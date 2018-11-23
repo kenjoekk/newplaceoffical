@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
+	'hostname' => '192.168.1.24',
+	'username' => 'zebra',
+	'password' => '0988619987',
 	'database' => 'grand_new_palace',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

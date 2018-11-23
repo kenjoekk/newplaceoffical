@@ -1,0 +1,9 @@
+<?php
+//title
+$lang['ch_home']='首页';
+$lang['ch_service']='服务';
+$lang['ch_customer']='客户案例';
+$lang['ch_news']='最新消息';
+$lang['ch_about']='关于我们';
+$lang['ch_contactus']='联络我们';
+?>
