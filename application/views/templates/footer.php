@@ -14,7 +14,7 @@ hr {
     margin: 1em 0;
     padding: 0; 
 }
-@media (max-width:500px) {
+@media (max-width:768px) {
     .disappear{
       display:none;
       
@@ -23,6 +23,12 @@ hr {
       text-align:center;
     }
     
+}
+@media(max-width:991px){
+    .disappear{
+      display:none;
+      
+    }
 }
 .textColorBottom{
       color:gray;
@@ -34,15 +40,15 @@ hr {
       <div class="container-fluid footerBanner" >
         <div class="container">
           <div class="row">
-            <div class="col-xl-6 col-sm-12 pt-md-5 pl-md-5">
+            <div class="col-xl-6 col-md-6 col-sm-12 pt-md-5 pl-md-5">
                
                 <div class="disappear"><img src="<?php echo base_url('assets/images/footer/footerLogo.png')?>"></div>
-                <div class="row justify-content-center justify-content-sm-start"><div class="pl-md-4 pt-md-4 pt-2"><img src="<?php echo base_url('assets/images/footer/footerPhoneIcon.png')?>"></div><div class="pt-md-4 pl-md-3 pt-2 footerText">400-1520-570</div></div>
-                <div class="row "><div class="pl-md-4 pt-md-4"><img class="disappear" src="<?php echo base_url('assets/images/footer/footerLocationIcon.png')?>"></div><div class="pt-md-4 pl-md-3 pt-1 footerText ">上海市静安区高平路88号雅悦新天地婚宴展会中心</div></div>
+                <div class="row justify-content-center justify-content-md-start"><div class="pl-md-4 pt-md-4 pt-2"><img src="<?php echo base_url('assets/images/footer/footerPhoneIcon.png')?>"></div><div class="pt-md-4 pl-md-3 pt-2 footerText">400-1520-570</div></div>
+                <div class="row justify-content-center justify-content-md-start"><div class="pl-md-4 pt-md-4"><img class="disappear" src="<?php echo base_url('assets/images/footer/footerLocationIcon.png')?>"></div><div class="pt-md-4 pl-md-3 pt-1 footerText ">上海市静安区高平路88号雅悦新天地婚宴展会中心</div></div>
                 <div class="row disappear"><div class="pl-4 pt-4"><img src="<?php echo base_url('assets/images/footer/footerWechatIcon.png')?>"></div><div class="pt-4 pl-3 footerText">官方微信</div></div>
                 <div class="row disappear"><div class="pl-4 pt-4"><img src="<?php echo base_url('assets/images/footer/footerQrcode.png')?>"></div></div>
             </div>
-            <div class="col-xl-6 col-sm-12 d-flex justify-content-end pr-md-4 pt-md-5 pt-3">
+            <div class="col-xl-6 col-md-6 col-sm-12 d-flex justify-content-xl-end justify-content-md-end justify-content-center pr-md-4 pt-md-5 pt-3">
               <img src="<?php echo base_url('assets/images/footer/footerMap.png')?>">
             </div>
           </div>

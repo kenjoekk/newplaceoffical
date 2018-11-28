@@ -42,9 +42,9 @@
     .bannerBackgroundColor{
         background-color:#aa942f;
         height:500px;
-        width:1000px;
+        width:1100px;
         position:absolute;
-        left:19%;
+        left:21%;
         /* right:390px; */
         z-index:1;
     }
@@ -88,7 +88,7 @@
         }
      }
 
-    .test{
+    .level{
         z-index:2;
         max-width:750px;
         /* margin-top:-24px; */
@@ -125,9 +125,9 @@
     <div class="container">
           <div class="bannerBackgroundColor"></div>
         <div class="row">
-          <div class="test mt-5 col-xl-8 col-lg-12">
+          <div class="level mt-5 col-xl-8 col-lg-12">
             <div style="background-color:#fff" >
-                <div class="swiper-container gallery-top">
+                <div class="swiper-container gallery-top ">
                     <div class="swiper-wrapper" style="height:450px">
                         <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue1.png')?>)"></div>
                         <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue2.png')?>)"></div>
@@ -150,7 +150,7 @@
                 </div>    
             </div>
           </div>
-          <div class="test col-xl-4 infoStyle infoDiv">
+          <div class="level col-xl-4 infoStyle infoDiv">
               <p class="mt-3 infoTitleEn"><span> CAESAR</span></p>
               <p class="infoTitleCh"><span> 凯萨厅 </span></p>  
               <p><span class="textIconStyleA"> 优惠</span><span class="pl-2">官网预约探店即送钻石</span></p>  

@@ -7,7 +7,7 @@
        margin-top:-10px;
        margin-bottom:20px;
      }
-     /* <!-- Demo styles --> */
+     /* <!-- swiper styles --> */
   
     html, body {
       position: relative;
@@ -23,12 +23,13 @@
     }
     .swiper-container {
       width: 100%;
-      height: 300px;
+      height: 100%;
     }
     .swiper-slide {
       text-align: center;
       font-size: 18px;
       background: #fff;
+
       /* Center slide text vertically */
       display: -webkit-box;
       display: -ms-flexbox;
@@ -74,12 +75,12 @@
     }
     
     .reservationPic{
-      height:600px;
+      height:500px;
       width:100%;
     }
-    
-  
-
+    .carousel{
+      margin-bottom:0;
+    }
      
      </style>
      <body>
@@ -195,7 +196,7 @@
 
     
 
-    <!-- Contactus -->
+    <!-- 立即预约 -->
     <div>
       <div class="container d-flex justify-content-center pt-3" >
         <div class="row">
@@ -205,11 +206,6 @@
       <div class="container">
         <div class="row">
             <div id="carouselExampleIndicators" class="carousel slide col-md-6" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-              </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img class="d-block reservationPic" src="<?php echo base_url('assets/images/homePage/intro1.jpg')?>" alt="First slide">
@@ -253,14 +249,19 @@
     $b_p_data[3]['b_img']=base_url('assets/images/homePage/bottom04.jpg');
     $b_p_data[4]['b_img']=base_url('assets/images/homePage/bottom05.jpg');
   ?>
-
-  <div class="row">
-    <div class="swiper-container col-12" >
-     <div class="swiper-wrapper" >
-      <?php foreach($b_p_data as $b_p_key =>$b_p_value){ ?>
-       <div class="swiper-slide"><img src="<?php echo $b_p_value['b_img']?>"></div>
-      <?php }?>
-     </div>   
+  <div class="container">
+    <div class="row pb-5">
+      <div class="swiper-container col-12" >
+            <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      <div class="swiper-wrapper" >
+        <?php foreach($b_p_data as $b_p_key =>$b_p_value){ ?>
+        <div class="swiper-slide" style="background-color:#eeeeee;"><img src="<?php echo $b_p_value['b_img']?>">
+        </div>
+        <?php }?>     
+      </div>   
+      </div>
     </div>
   </div>
     
@@ -335,14 +336,18 @@
   <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 6,
+      slidesPerView: 5,
       spaceBetween: 30,
-      slidesPerGroup: 1,
+      slidesPerGroup: 3,
       loop: true,
       // loopFillGroupWithBlank: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
       breakpoints: {
         1024: {

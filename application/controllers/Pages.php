@@ -89,6 +89,29 @@ class pages extends CI_Controller {
 
 
 	}
+	public function film(){
+		
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/film');
+		$this->load->view('templates/footer');
+
+	}
+	public function wedding_feast(){
+
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/wedding_feast');
+		$this->load->view('templates/footer');
+
+	}
 
 	public function pagination(){
 		$this->load->library('pagination');	
