@@ -49,6 +49,75 @@ class console extends CI_Controller {
 		$this->load->view('console/layout',$data);
 	}
 
+	public function venue_list(){
+		$user = get_user_session();
+		$this->load->model('venueModel');
+		$data['page'] = 'console/venue/list';
+		$data['path'] = 'venue_list';
+		$data['list'] = $this->venueModel->get_venue_list();
+		$this->load->view('console/layout',$data);
+	}
+
+	public function venue_add(){
+		$user = get_user_session();
+		$data['page'] = 'console/venue/add';
+		$data['path'] = 'venue_add';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function venue_edit($id){
+		$user = get_user_session();
+		$this->load->model('venueModel');
+		$data['page'] = 'console/venue/edit';
+		$data['path'] = 'venue_edit';
+		$data['venue'] = $this->venueModel->get_once_venue($id);
+		$this->load->view('console/layout',$data);
+	}
+
+	public function video_list(){
+		$user = get_user_session();
+		$data['page'] = 'console/video/list';
+		$data['path'] = 'video_list';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function video_add(){
+		$user = get_user_session();
+		$data['page'] = 'console/video/add';
+		$data['path'] = 'video_add';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function banquet_list(){
+		$user = get_user_session();
+		$data['page'] = 'console/banquet/list';
+		$data['path'] = 'banquet_list';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function banquet_add(){
+		$user = get_user_session();
+		$data['page'] = 'console/banquet/add';
+		$data['path'] = 'banquet_add';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function news_list(){
+		$user = get_user_session();
+		$data['page'] = 'console/news/list';
+		$data['path'] = 'news_list';
+		$this->load->view('console/layout',$data);
+	}
+
+	public function news_add(){
+		$user = get_user_session();
+		$data['page'] = 'console/news/add';
+		$data['path'] = 'news_add';
+		$this->load->view('console/layout',$data);
+	}
+
+	
+
 	
 	
 	

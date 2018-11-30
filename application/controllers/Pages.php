@@ -123,27 +123,27 @@ class pages extends CI_Controller {
 		$config['num_links']=1;
 
 		$config['full_tag_open'] = '<ul class="pagination">';
-        $config['full_tag_close'] = '</ul>';
-        $config['first_tag_open'] = '<li class="page-item">'; //第一个链接的起始标签。
-        $config['first_tag_close'] = '</li>'; //第一个链接的结束标签。
-        $config['next_tag_open'] = '<li class="page-item">'; //下一页链接的起始标签。
-        $config['next_tag_close'] = '</li>'; //下一页链接的结束标签。
-        $config['prev_tag_open'] = '<li class="page-item">'; //上一页链接的起始标签。
-        $config['prev_tag_close'] = '</li>'; //
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">'; //当前页链接的起始标签。可以加多个标签(因为当前页会自动屏蔽了a标签需要手动加上，为保持样式一致)
-        $config['cur_tag_close'] = '</a ></li>'; //当前页链接的结束标签。
-        $config['num_tag_open'] = '<li class="page-item"><a class="page-link"'; //数字链接的起始标签。
-        $config['num_tag_close'] = '</a></li>'; //数字链接的结束标签。
-        $config['last_tag_open'] = '<li class="page-item">';
-        $config['last_tag_close'] = '</li>';
+    $config['full_tag_close'] = '</ul>';
+    $config['first_tag_open'] = '<li class="page-item">'; //第一个链接的起始标签。
+    $config['first_tag_close'] = '</li>'; //第一个链接的结束标签。
+    $config['next_tag_open'] = '<li class="page-item">'; //下一页链接的起始标签。
+    $config['next_tag_close'] = '</li>'; //下一页链接的结束标签。
+    $config['prev_tag_open'] = '<li class="page-item">'; //上一页链接的起始标签。
+    $config['prev_tag_close'] = '</li>'; //
+		$config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">'; //当前页链接的起始标签。可以加多个标签(因为当前页会自动屏蔽了a标签需要手动加上，为保持样式一致)
+		$config['cur_tag_close'] = '</a ></li>'; //当前页链接的结束标签。
+		$config['num_tag_open'] = '<li class="page-item"><a class="page-link"'; //数字链接的起始标签。
+		$config['num_tag_close'] = '</a></li>'; //数字链接的结束标签。
+		$config['last_tag_open'] = '<li class="page-item">';
+		$config['last_tag_close'] = '</li>';
 		$config['first_link']= FALSE;
 		$config['next_tag_open'] = '<li class="page-item"><a class="page-link"';
 		$config['next_tag_close'] = '</a></li>';
 		$config['next_link']= '下一页 <span class="oi oi-caret-right" aria-hidden="true"></span>';
 		$config['prev_tag_open'] = '<li class="page-item"><a class="page-link"';
 		$config['prev_tag_close'] = '</a></li>';
-        $config['prev_link']= '<span class="oi oi-caret-left" aria-hidden="true"></span> 上一页';
-        $config['last_link']= FALSE;
+		$config['prev_link']= '<span class="oi oi-caret-left" aria-hidden="true"></span> 上一页';
+		$config['last_link']= FALSE;
 
 
 		$this->pagination->initialize($config);

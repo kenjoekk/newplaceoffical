@@ -36,26 +36,26 @@ if ( ! function_exists('setImportAsset'))
 	}
 }
 
-if ( ! function_exists('getCategoryPath'))
+if ( ! function_exists('getVenuePath'))
 {
-	function getCategoryPath()
+	function getVenuePath($id)
 	{
 		$parts = parse_url(base_url());
 		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
-		$path = "assets/images/category/";
+		$path = "assets/images/venue/".$id."/";
 		if(!is_dir($path)){
 			mkdir($path,0777,true);
 		}
 		return $path.'/';
 	}
 }
-if ( ! function_exists('getCategoryFile'))
+if ( ! function_exists('getVenueFile'))
 {
-	function getCategoryFile()
+	function getVenueFile($id)
 	{
 		$parts = parse_url(base_url());
 		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
-		return $parts['scheme']."://".$parts['host'] ."/newPlace/assets/images/category/";
+		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/venue/".$id."/";
 	}
 }
 
@@ -78,7 +78,7 @@ if ( ! function_exists('getProductFile'))
 	{
 		$parts = parse_url(base_url());
 		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
-		return $parts['scheme']."://".$parts['host'] ."/newPlace/assets/images/product/";
+		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/product/";
 	}
 }
 

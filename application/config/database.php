@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'grand_new_palace',
+	'hostname' => '192.168.1.24',
+	'username' => 'zebra',
+	'password' => '0988619987',
+	'database' => 'grand_new_palace_official',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

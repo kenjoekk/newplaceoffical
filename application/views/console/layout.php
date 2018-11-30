@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>鱼天地菜单</title>
+    <title>新天地後台</title>
     <!-- Favicon-->
     <link rel="icon" href="<?php echo base_url('assets/images/icon.jpg');?>" type="image/x-icon">
 
@@ -28,20 +28,30 @@
     <!-- loading Css-->
     <link href="<?php echo base_url('assets/js/loading/jquery.loading.css') ?>" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="<?php echo base_url('assets/console/css/style.css') ?>" rel="stylesheet">
-
-    <!-- Custom Css -->
+    <!-- sweetalert Css -->
     <link href="<?php echo base_url('assets/console/plugins/sweetalert/sweetalert.css') ?>" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/console/css/themes/all-themes.css') ?>" rel="stylesheet" />
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="<?php echo base_url('assets/console/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') ?>" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url('assets/console/css/style.css') ?>" rel="stylesheet">
+
 
     <!-- Jquery Core Js -->
     <script src="<?php echo base_url('assets/console/plugins/jquery/jquery.min.js')?>"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('assets/console/plugins/bootstrap/js/bootstrap.js')?>"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="<?php echo base_url('assets/console/plugins/momentjs/moment.js')?>"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="<?php echo base_url('assets/console/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')?>"></script>
 
     <!-- Select Plugin Js -->
     <script src="<?php echo base_url('assets/console/plugins/bootstrap-select/js/bootstrap-select.js')?>"></script>
@@ -165,17 +175,56 @@
                             <span>首页</span>
                         </a>
                     </li>
-                    <li class="<?php if($path == 'menu_list' || $path == 'menu_banner'){echo 'active';}?>">
+                    <li class="<?php if($path == 'venue_list' || $path == 'venue_add' || $path == 'venue_edit'){echo 'active';}?>">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">menu</i>
-                            <span>菜单</span>
+                            <i class="material-icons">store</i>
+                            <span>会馆</span>
                         </a>
                         <ul class="ml-menu">
-                            <li class="<?php if($path == 'menu_banner'){echo 'active';}?>">
-                                <a href="<?=base_url('console/menu_banner')?>">上方banner</a>
+                            <li class="<?php if($path == 'venue_list'){echo 'active';}?>">
+                                <a href="<?=base_url('console/venue_list')?>">会馆列表</a>
                             </li>
-                            <li class="<?php if($path == 'menu_list'){echo 'active';}?>">
-                                <a href="<?=base_url('console/menu_list')?>">列表</a>
+                            <li class="<?php if($path == 'venue_add'){echo 'active';}?>">
+                                <a href="<?=base_url('console/venue_add')?>">新增会馆</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<?php if($path == 'video_list'){echo 'active';}?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">video_library</i>
+                            <span>视频区</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="<?php if($path == 'video_list'){echo 'active';}?>">
+                                <a href="<?=base_url('console/video_list')?>">视频列表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<?php if($path == 'banquet_list' || $path == 'banquet_add'){echo 'active';}?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">bookmark</i>
+                            <span>宴会方案</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="<?php if($path == 'banquet_list'){echo 'active';}?>">
+                                <a href="<?=base_url('console/banquet_list')?>">方案列表</a>
+                            </li>
+                            <li class="<?php if($path == 'banquet_add'){echo 'active';}?>">
+                                <a href="<?=base_url('console/banquet_add')?>">新增方案</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<?php if($path == 'news_list' || $path == 'news_add'){echo 'active';}?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">event</i>
+                            <span>最新活动</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="<?php if($path == 'news_list'){echo 'active';}?>">
+                                <a href="<?=base_url('console/news_list')?>">活动列表</a>
+                            </li>
+                            <li class="<?php if($path == 'news_add'){echo 'active';}?>">
+                                <a href="<?=base_url('console/news_add')?>">新增活动</a>
                             </li>
                         </ul>
                     </li>
