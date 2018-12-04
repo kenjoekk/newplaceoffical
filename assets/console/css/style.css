@@ -11071,3 +11071,24 @@ html.ie11 .bs-searchbox .form-control {
     width: 100%;
     max-width: 300px;
 }
+
+.dtp table.dtp-picker-days tr td a.selected {
+    background: #ea5d50;
+}
+
+.dtp div.dtp-date,
+.dtp div.dtp-time {
+    background: #ea5d50;
+}
+
+.dtp>.dtp-content>.dtp-date-view>header.dtp-header {
+    background: #ea5d50;
+}
+
+.dtp .p10>a {
+    color: rgb(255, 152, 142);
+}
+
+.float-r {
+    float: right;
+}

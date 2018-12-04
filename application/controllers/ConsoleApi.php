@@ -7,6 +7,7 @@ class ConsoleApi extends CI_Controller {
   {
     parent::__construct();
     //預讀方法
+    $this->load->model('venueModel');
   }
   public function login()
   {
@@ -74,6 +75,72 @@ class ConsoleApi extends CI_Controller {
     $this->db->update('member',array('memberPassword'=>$memberPassword));
     clean_user_session();
     redirect('console/login','refresh');
+  }
+
+
+  /***************
+        会馆 
+  ****************/
+
+  public function addVenue(){
+    $data['english_name'] = $this->input->post('english_name');
+    $data['chiness_name'] = $this->input->post('chiness_name');
+    $data['money'] = $this->input->post('money');
+    $data['table_num'] = $this->input->post('table_num');
+    $data['detail'] = $this->input->post('detail');
+    $data['schedule'] = $this->input->post('start-schedule')."~".$this->input->post('end-schedule');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    
+    $v_id = $this->venueModel->addVenue($data);
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $v_id.'venue.'.$fileType[1];
+      copy($img_url['tmp_name'] , getVenuePath($v_id).$filename);
+      $this->venueModel->editVenue($v_id,array('img_url'=>$filename.'?'.rand()));
+    }
+    redirect('console/venue_list','refresh');
+    
+  }
+
+  public function editVenue(){
+    $v_id = $this->input->post('v_id');
+    $data['english_name'] = $this->input->post('english_name');
+    $data['chiness_name'] = $this->input->post('chiness_name');
+    $data['money'] = $this->input->post('money');
+    $data['table_num'] = $this->input->post('table_num');
+    $data['detail'] = $this->input->post('detail');
+    $data['schedule'] = $this->input->post('start-schedule')."~".$this->input->post('end-schedule');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $v_id.'venue.'.$fileType[1];
+      copy($img_url['tmp_name'] , getVenuePath($v_id).$filename);
+      // $this->venueModel->editVenue($v_id,array('img_url'=>));
+      $data['img_url'] = $filename.'?'.rand();
+    }
+    $this->venueModel->editVenue($v_id,$data);
+
+    redirect('console/venue_list','refresh');
+    
+  }
+
+  public function removeVenue(){
+    $id = $this->input->post('id');
+    $this->venueModel->removeVenue($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  public function moveVenue(){
+    $id = $this->input->post('id');
+    $type = $this->input->post('type');
+
+    $this->venueModel->moveVenue($id,$type);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
   }
 
   /***************

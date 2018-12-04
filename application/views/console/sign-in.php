@@ -32,7 +32,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">鱼天地菜单-后台登入</a>
+            <a href="javascript:void(0);">新天地-后台登入</a>
         </div>
         <div class="card">
             <div class="body">
