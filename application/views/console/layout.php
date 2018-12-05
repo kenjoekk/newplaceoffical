@@ -82,6 +82,7 @@
     <!-- sweetalert Js-->
     <script src="<?php echo base_url('assets/console/plugins/sweetalert/sweetalert.min.js')?>"></script>
 
+    <script src="<?=base_url('assets/console/plugins/bootstrap-notify/bootstrap-notify.min.js')?>"></script>
     <!-- Demo Js -->
     <script src="<?php echo base_url('assets/console/js/demo.js')?>"></script>
     
@@ -175,7 +176,7 @@
                             <span>首页</span>
                         </a>
                     </li>
-                    <li class="<?php if($path == 'venue_list' || $path == 'venue_add' || $path == 'venue_edit'){echo 'active';}?>">
+                    <li class="<?php if($path == 'venue_list' || $path == 'venue_add' || $path == 'venue_edit' || $path == 'venue_setVenueImg'){echo 'active';}?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">store</i>
                             <span>会馆</span>
@@ -200,7 +201,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="<?php if($path == 'banquet_list' || $path == 'banquet_add'){echo 'active';}?>">
+                    <li class="<?php if($path == 'banquet_list' || $path == 'banquet_add' || $path == 'banquet_edit' || $path == 'banquet_setImg'){echo 'active';}?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">bookmark</i>
                             <span>宴会方案</span>
@@ -214,7 +215,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="<?php if($path == 'news_list' || $path == 'news_add'){echo 'active';}?>">
+                    <li class="<?php if($path == 'news_list' || $path == 'news_add' | $path == 'news_edit'){echo 'active';}?>">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">event</i>
                             <span>最新活动</span>

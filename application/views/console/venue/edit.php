@@ -100,6 +100,7 @@ $(function(){
                          '</div>'+
                      '</div>'+
                  '</div>',
+        showConfirmButton: false,
         html: true
     });
     var base = $.AdminBSB.fn.getBase64($(this)[0].files[0],function(status,base64){

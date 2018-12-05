@@ -8,6 +8,9 @@ class ConsoleApi extends CI_Controller {
     parent::__construct();
     //預讀方法
     $this->load->model('venueModel');
+    $this->load->model('banquetModel');
+    $this->load->model('newsModel');
+    $this->load->model('videoModel');
   }
   public function login()
   {
@@ -143,185 +146,289 @@ class ConsoleApi extends CI_Controller {
     echo json_encode($json_arr);
   }
 
-  /***************
-        菜单 
-  ****************/
-  public function addCategory(){
-    $data['m_name'] = $this->input->post('m_name');
-    $cateImg = $_FILES['cateImg']['tmp_name']!=''?$_FILES['cateImg']:'';
+  public function setVenueImg(){
+    $data['venue_id'] = $this->input->post('venue_id');
+    $data['type'] = $this->input->post('img_type');
+    $img_id = $this->input->post('img_id');
     
-    
-    $m_id = $this->menuModel->addCategory($data);
-    if($cateImg != ''){
-      $filename = uniqid().$cateImg['name'];
-      copy($cateImg['tmp_name'] , getCategoryPath().$filename);
-      $this->menuModel->editCategory($m_id,array('m_pic'=>$filename.'?'.rand()));
-    }
-    redirect('console/menu_list','refresh');
-  }
+    $venue_img1 = isset($_FILES['venue_img1']) && $_FILES['venue_img1']['tmp_name']!=''?$_FILES['venue_img1']:'';
+    $venue_img2 = isset($_FILES['venue_img2']) && $_FILES['venue_img2']['tmp_name']!=''?$_FILES['venue_img2']:'';
+    $venue_img3 = isset($_FILES['venue_img3']) && $_FILES['venue_img3']['tmp_name']!=''?$_FILES['venue_img3']:'';
 
-  public function editCategory(){
-    $m_id = $this->input->post('m_id');
-    $data['m_name'] = $this->input->post('m_name');
-    $cateImg = $_FILES['cateImg']['tmp_name']!=''?$_FILES['cateImg']:'';
-    
-    if(!empty($m_id) && !empty($data['m_name'])){
-      $res = $this->menuModel->editCategory($m_id,$data);
-      if($cateImg != ''){
-        $filename = uniqid().$cateImg['name'];
-        copy($cateImg['tmp_name'] , getCategoryPath().$filename);
-        $this->menuModel->editCategory($m_id,array('m_pic'=>$filename.'?'.rand()));
-      }
-    }
-    redirect('console/menu_list','refresh');
-  }
-
-  public function removeCategory(){
-    $data['id'] = $this->input->post('id');
-    if(!empty($data['id'])){
-      $res = $this->menuModel->removeCategory($data['id']);
-      if($res){
-        $json_arr['status'] = '200';
-        $json_arr['msg'] = '刪除完成';  
-      }else{
-        $json_arr['status'] = '204';
-        $json_arr['msg'] = '資料庫發生錯誤，請稍後再試．';
-      }
+    if($img_id != ""){
+      $id = $img_id;
     }else{
-      $json_arr['status'] = '400';
-      $json_arr['msg'] = '缺少ID';
+      $id = $this->venueModel->addVenueImg($data);
     }
+
+    $updateData = '';
+    if($venue_img1 != ''){
+      $fileType = explode('/',$venue_img1['type']);
+      $filename = $data['venue_id'].'-'.$id.'-venue_img1.'.$fileType[1];
+      copy($venue_img1['tmp_name'] , getVenuePath($data['venue_id']).$filename);
+      
+      $updateData .= $filename.'?'.rand().',';
+    }else{
+      $venue_img1_org = $this->input->post('venue_img1_org');
+      // echo "venue_img1_org: ".$venue_img1_org.'<br>';
+      if($venue_img1_org != ''){
+        $venue_img1_org = explode('/',$venue_img1_org);
+        $updateData .= $venue_img1_org[count($venue_img1_org)-1].',';
+      }
+    }
+
+    if($venue_img2 != ''){
+      $fileType = explode('/',$venue_img2['type']);
+      $filename = $data['venue_id'].'-'.$id.'-venue_img2.'.$fileType[1];
+      copy($venue_img2['tmp_name'] , getVenuePath($data['venue_id']).$filename);
+      
+      $updateData .= $filename.'?'.rand().',';
+    }else{
+      $venue_img2_org = $this->input->post('venue_img2_org');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($venue_img2_org != ''){
+        $venue_img2_org = explode('/',$venue_img2_org);
+        $updateData .= $venue_img2_org[count($venue_img2_org)-1].',';
+      }
+    }
+
+    if($venue_img3 != ''){
+      $fileType = explode('/',$venue_img3['type']);
+      $filename = $data['venue_id'].'-'.$id.'-venue_img3.'.$fileType[1];
+      copy($venue_img3['tmp_name'] , getVenuePath($data['venue_id']).$filename);
+      
+      $updateData .= $filename.'?'.rand().',';
+    }else{
+      $venue_img3_org = $this->input->post('venue_img3_org');
+      // echo "venue_img3_org: ".$venue_img3_org.'<br>';
+      if($venue_img3_org != ''){
+        $venue_img3_org = explode('/',$venue_img3_org);
+        $updateData .= $venue_img3_org[count($venue_img3_org)-1].',';
+      }
+    }
+
+    if($updateData != ''){
+      $updateData = rtrim($updateData, ",");
+      // echo "updateData: ".$updateData.'<br>';
+      $this->venueModel->editVenueImg($id,array('path'=>$updateData));
+    }
+    
+    redirect('console/venue_setVenueImg/'.$data['venue_id'],'refresh');
+
+  }
+
+  public function removeVenueImg(){
+    $imgid = $this->input->post('imgid');
+    $this->venueModel->removeVenueImg($imgid);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
     echo json_encode($json_arr);
   }
 
-  public function setCategorySeqence(){
-    $data['id'] = $this->input->post('id');
-    $data['type'] = $this->input->post('type');
-    if(!empty($data['id'])){
-      $res = $this->menuModel->setCategorySeqence($data);
-      if($res){
-        $json_arr['status'] = '200';
-        $json_arr['msg'] = '排序完成';  
-      }else{
-        $json_arr['status'] = '204';
-        $json_arr['msg'] = '资料库发生错误，请稍后在试。';
-      }
-    }else{
-      $json_arr['status'] = '400';
-      $json_arr['msg'] = '缺少ID或TYPE';
-    }
-    echo json_encode($json_arr);
-  }
+  public function moveVenueImg(){
+    $id = $this->input->post('id');
+    $type = $this->input->post('type');
 
-  public function addMenuBanner(){
-    $data['m_b_name'] = $this->input->post('m_b_name');
-    $m_b_url = $_FILES['m_b_url']['tmp_name']!=''?$_FILES['m_b_url']:'';
-    
-    
-    $m_id = $this->menuModel->addBanner($data);
-    if($m_b_url != ''){
-      $filename = uniqid().$m_b_url['name'];
-      copy($m_b_url['tmp_name'] , getCategoryPath().$filename);
-      $this->menuModel->editBanner($m_id,array('m_b_url'=>$filename.'?'.rand()));
-    }
-    redirect('console/menu_banner','refresh');
-  }
-  
-  public function editMenuBanner(){
-    $m_b_id = $this->input->post('m_b_id');
-    $data['m_b_name'] = $this->input->post('m_b_name');
-    $m_b_url = $_FILES['m_b_url']['tmp_name']!=''?$_FILES['m_b_url']:'';
-    
-    if(!empty($m_b_id) && !empty($data['m_b_name'])){
-      $res = $this->menuModel->editBanner($m_b_id,$data);
-      if($m_b_url != ''){
-        $filename = 'banner.jpg';
-        copy($m_b_url['tmp_name'] , getCategoryPath().$filename);
-        $this->menuModel->editBanner($m_b_id,array('m_b_url'=>$filename.'?'.rand()));
-      }
-    }
-    redirect('console/menu_banner','refresh');
+    $this->venueModel->moveVenueImg($id,$type);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
   }
   /***************
-        商品 
+        方案
   ****************/
-  public function addProduct(){
-    $data['m_id'] = $this->input->post('m_id');
-    $data['p_name'] = $this->input->post('p_name');
-    $data['p_price'] = $this->input->post('p_price');
-    $p_pic = $_FILES['p_pic']['tmp_name']!=''?$_FILES['p_pic']:'';
+
+  public function addBanquet(){
+    $data['title'] = $this->input->post('title');
+    $data['money'] = $this->input->post('money');
+    $data['detail'] = $this->input->post('detail');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
     
-    $cId = $this->productModel->addProduct($data);
-    if($p_pic != ''){
-      $filename = uniqid().$p_pic['name'];
-      copy($p_pic['tmp_name'] , getProductPath($cId).$filename);
-      $this->productModel->editProduct($cId,array('p_pic_url'=>$filename.'?'.rand()));
+    $b_id = $this->banquetModel->addBanquet($data);
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $b_id.'banquet.'.$fileType[1];
+      copy($img_url['tmp_name'] , getBanquetPath($b_id).$filename);
+      $this->banquetModel->editBanquet($b_id,array('img_url'=>$filename.'?'.rand()));
     }
-    redirect('console/menu_list','refresh');
-  }
-  public function editProduct(){
-    $p_id = $this->input->post('p_id');
-    $data['p_name'] = $this->input->post('p_name');
-    $data['p_price'] = $this->input->post('p_price');
-    $p_pic_url = $_FILES['p_pic_url']['tmp_name']!=''?$_FILES['p_pic_url']:'';
+    redirect('console/banquet_list','refresh');
     
-    if(!empty($p_id) && !empty($data['p_name'])){
-      $res = $this->productModel->editProduct($p_id,$data);
-      if($p_pic_url != ''){
-        $filename = uniqid().$p_pic_url['name'];
-        copy($p_pic_url['tmp_name'] , getProductPath().$filename);
-        $this->productModel->editProduct($p_id,array('p_pic_url'=>$filename.'?'.rand()));
-      }
-    }
-    redirect('console/menu_list','refresh');
   }
 
-  public function removeProduct(){
-    $data['id'] = $this->input->post('id');
-    if(!empty($data['id'])){
-      $res = $this->productModel->removeProduct($data['id']);
-      if($res){
-        $json_arr['status'] = '200';
-        $json_arr['msg'] = '刪除完成';  
-      }else{
-        $json_arr['status'] = '204';
-        $json_arr['msg'] = '資料庫發生錯誤，請稍後再試．';
-      }
-    }else{
-      $json_arr['status'] = '400';
-      $json_arr['msg'] = '缺少ID';
+  public function editBanquet(){
+    $b_id = $this->input->post('b_id');
+    $data['title'] = $this->input->post('title');
+    $data['money'] = $this->input->post('money');
+    $data['detail'] = $this->input->post('detail');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $b_id.'banquet.'.$fileType[1];
+      copy($img_url['tmp_name'] , getBanquetPath($b_id).$filename);
+      // $this->banquetModel->editBanquet($b_id,array('img_url'=>));
+      $data['img_url'] = $filename.'?'.rand();
     }
+    $this->banquetModel->editBanquet($b_id,$data);
+
+    redirect('console/banquet_list','refresh');
+    
+  }
+
+  public function removeBanquet(){
+    $id = $this->input->post('id');
+    $this->banquetModel->removeBanquet($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
     echo json_encode($json_arr);
   }
 
-  public function setProductSeqence(){
-    $data['id'] = $this->input->post('id');
-    $data['type'] = $this->input->post('type');
-    if(!empty($data['id'])){
-      $res = $this->productModel->setProductSeqence($data);
-      if($res){
-        $json_arr['status'] = '200';
-        $json_arr['msg'] = '排序完成';  
-      }else{
-        $json_arr['status'] = '204';
-        $json_arr['msg'] = '资料库发生错误，请稍后在试。';
-      }
-    }else{
-      $json_arr['status'] = '400';
-      $json_arr['msg'] = '缺少ID或TYPE';
-    }
+  public function moveBanquet(){
+    $id = $this->input->post('id');
+    $type = $this->input->post('type');
+
+    $this->banquetModel->moveBanquet($id,$type);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
     echo json_encode($json_arr);
   }
 
-  public function addMenus(){
-    $num = $this->input->get('num');
-    for ($i=0; $i < $num; $i++) { 
-      $data['m_pic'] = '1.png';
-      $m_id = $this->menuModel->addCategory($data);
-      $this->menuModel->editCategory($m_id,array('m_pic'=>'menu_'.$m_id.'.png'));
+  public function addBanquetImg(){
+    $data['banquet_id'] = $this->input->post('banquet_id');
+    $path = $_FILES['path']['tmp_name']!=''?$_FILES['path']:'';
+
+    $id = $this->banquetModel->addBanquetImg($data);
+    if($path != ''){
+      $fileType = explode('/',$path['type']);
+      $filename = $data['banquet_id'].'-'.$id.'-banquet.'.$fileType[1];
+      copy($path['tmp_name'] , getBanquetPath($data['banquet_id']).$filename);
+      $data['path'] = $filename.'?'.rand();
+      $this->banquetModel->editBanquetImg($id,array('path'=>$filename));
     }
+    
+    redirect('console/banquet_setImg/'.$data['banquet_id'],'refresh');
+  }
+
+  public function editBanquetImg(){
+    $id = $this->input->post('id');
+    $banquet_id = $this->input->post('banquet_id');
+    $path = $_FILES['path']['tmp_name']!=''?$_FILES['path']:'';
+
+    // $id = $this->banquetModel->addBanquetImg($data);
+    if($path != ''){
+      $fileType = explode('/',$path['type']);
+      $filename = $banquet_id.'-'.$id.'-banquet.'.$fileType[1];
+      copy($path['tmp_name'] , getBanquetPath($banquet_id).$filename);
+      $data['path'] = $filename.'?'.rand();
+      $this->banquetModel->editBanquetImg($id,array('path'=>$filename));
+    }
+    
+    redirect('console/banquet_setImg/'.$banquet_id,'refresh');
+  }
+
+  public function removeBanquetImg(){
+    $id = $this->input->post('id');
+    $this->banquetModel->removeBanquetImg($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  public function moveBanquetImg(){
+    $id = $this->input->post('id');
+    $type = $this->input->post('type');
+    $this->banquetModel->moveBanquetImg($id,$type);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  /***************
+        活动
+  ****************/
+  
+  public function addNews(){
+    $data['active_url'] = $this->input->post('active_url');
+    $order_confirm = $this->input->post('order_confirm');
+    $data['title'] = $this->input->post('title');
+    $data['sub_title'] = $this->input->post('sub_title');
+    $data['detail'] = $this->input->post('detail');
+    $data['hot_num'] = $this->input->post('hot_num');
+    $data['order_num'] = $this->input->post('order_num');
+    $data['active_time'] = $this->input->post('active_time');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    
+    if($order_confirm){
+      $data['type'] = 0;
+    }else{
+      $data['type'] = 1;
+    }
+    $n_id = $this->newsModel->addNews($data);
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $n_id.'news.'.$fileType[1];
+      copy($img_url['tmp_name'] , getNewsPath($n_id).$filename);
+      $this->newsModel->editNews($n_id,array('img_url'=>$filename.'?'.rand()));
+    }
+    redirect('console/news_list','refresh');
+  }
+
+  public function editNews(){
+    $n_id = $this->input->post('n_id');
+    $data['active_url'] = $this->input->post('active_url');
+    $order_confirm = $this->input->post('order_confirm');
+    $data['title'] = $this->input->post('title');
+    $data['sub_title'] = $this->input->post('sub_title');
+    $data['detail'] = $this->input->post('detail');
+    $data['hot_num'] = $this->input->post('hot_num');
+    $data['order_num'] = $this->input->post('order_num');
+    $data['active_time'] = $this->input->post('active_time');
+    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    
+    if($order_confirm){
+      $data['type'] = 0;
+    }else{
+      $data['type'] = 1;
+    }
+    $this->newsModel->editNews($n_id,$data);
+    if($img_url != ''){
+      $fileType = explode('/',$img_url['type']);
+      $filename = $n_id.'news.'.$fileType[1];
+      copy($img_url['tmp_name'] , getNewsPath($n_id).$filename);
+      $this->newsModel->editNews($n_id,array('img_url'=>$filename.'?'.rand()));
+    }
+    redirect('console/news_list','refresh');
   }
   
+  public function removeNews(){
+    $id = $this->input->post('id');
+    $this->newsModel->removeNews($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  /***************
+        视频区
+  ****************/
+
+  public function addVideo(){
+    $data['type'] = $this->input->post('type');
+    $path = $_FILES['path']['tmp_name']!=''?$_FILES['path']:'';
+
+    $n_id = $this->videoModel->addVideo($data);
+    if($path != ''){
+      $fileType = explode('/',$path['type']);
+      $filename = $n_id.'video.'.$fileType[1];
+      copy($path['tmp_name'] , getVideoPath($n_id).$filename);
+      $this->videoModel->editVideo($n_id,array('path'=>$filename.'?'.rand()));
+    }
+    redirect('console/video_list','refresh');
+  }
+
+  public function test(){
+    rmdir(getNewsPath(5));
+  }
 
 }
 
