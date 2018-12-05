@@ -112,6 +112,46 @@ class pages extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
+	public function wedding_feast_info(){
+		
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+		
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/wedding_feast_info');
+		$this->load->view('templates/footer');
+
+	}
+	public function banquet_service(){
+		
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+		
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/banquet_service');
+		$this->load->view('templates/footer');
+
+	}
+	public function events(){
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/events');
+		$this->load->view('templates/footer');
+	}
+	public function reservation(){
+		$langType = $this->input->get('lang');
+		$lang = $this->language($langType);
+		$data['lang']=$lang;
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/reservation');
+		$this->load->view('templates/footer');
+	}	
 
 	public function pagination(){
 		$this->load->library('pagination');	

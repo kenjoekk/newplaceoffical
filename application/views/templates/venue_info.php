@@ -128,13 +128,16 @@
           <div class="level mt-5 col-xl-8 col-lg-12">
             <div style="background-color:#fff" >
                 <div class="swiper-container gallery-top ">
-                    <div class="swiper-wrapper" style="height:450px">
-                        <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue1.png')?>)"></div>
-                        <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue2.png')?>)"></div>
-                        <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue3.png')?>)"></div>
-                        <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue4.png')?>)"></div>
-                        <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue5.png')?>)"></div>
+                    <div >
+                        <div class="swiper-wrapper" style="height:450px">
+                            <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue1.png')?>)"></div>
+                            <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue2.png')?>)"></div>
+                            <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue3.png')?>)"></div>
+                            <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue4.png')?>)"></div>
+                            <div class="swiper-slide" style="height:100%;background-image:url(<?php echo base_url('assets/images/venue/venue5.png')?>)"></div>
+                        </div>
                     </div>
+                   
                         <!-- Add Arrows -->
                     <div class="swiper-button-next swiper-button-white"></div>
                     <div class="swiper-button-prev swiper-button-white"></div>

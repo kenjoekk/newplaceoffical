@@ -222,7 +222,7 @@
             <form>
               <div class="form-group mt-5">
                 <label for="inputName">请输入您的姓名</label>
-                <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="请输入您的姓名">
+                <input type="text" class="form-control" id="inputName" placeholder="请输入您的姓名">
               </div>
               <div class="form-group mt-5">
                 <label for="inputPhone">请输入您的手机</label>
