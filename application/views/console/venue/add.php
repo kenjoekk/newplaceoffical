@@ -1,3 +1,48 @@
+<link rel="stylesheet" href="<?=base_url('assets/console/plugins/bootstrap-select/css/bootstrap-select.min.css')?>">
+<style>
+.add-img-block-desc{
+  border: 1px solid #dbdbdb;
+  border-radius:5px;
+  padding: 5px;
+  margin-bottom:20px
+}
+.add-img-block-desc p{
+  text-align:center;
+}
+.add-img-block-desc .type-desc{
+  display:flex;
+}
+.add-img-block-desc .img-block{
+  background:#dbdbdb;
+  margin:5px;
+  flex:1;
+  height:200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-img-block-desc .img-border-column .img-block{
+  height:95px;
+  flex:unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-img-block-desc .img-block span{
+  font-weight:900;
+  font-size:20px;
+  color:gray;
+}
+
+.add-img-block-desc .img-border-column{
+  
+  /* background:#dbdbdb; */
+  flex:1;
+  display: flex;
+  flex-direction: column;
+}
+</style>
 <div class="row clearfix">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="card">
@@ -69,8 +114,12 @@
     </div>
   </div>
 </div>
+<script src="<?=base_url('assets/console/plugins/bootstrap-select/js/bootstrap-select.min.js')?>"></script>
+<script src="<?=base_url('assets/console/plugins/bootstrap-select/js/i18n/defaults-zh_TW.min.js')?>"></script>
 <script>
 $(function(){
+  $('.selectpicker').selectpicker();
+
   $('.datepicker').bootstrapMaterialDatePicker({
       format: 'YYYY-MM-DD',
       clearButton: true,
@@ -93,6 +142,7 @@ $(function(){
                          '</div>'+
                      '</div>'+
                  '</div>',
+        showConfirmButton: false,
         html: true
     });
     var base = $.AdminBSB.fn.getBase64($(this)[0].files[0],function(status,base64){
@@ -102,6 +152,11 @@ $(function(){
           $(that).closest('div').find('.img-val').val(base64);
         }
     });
+  });
+
+  $('.add-img-block').on('click',function(){
+    var type = $('[name="img-type"]').val();
+    console.log(type);
   });
 })
 </script>

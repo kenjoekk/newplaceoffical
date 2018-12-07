@@ -59,28 +59,75 @@ if ( ! function_exists('getVenueFile'))
 	}
 }
 
-if ( ! function_exists('getProductPath'))
+if ( ! function_exists('getBanquetPath'))
 {
-	function getProductPath()
+	function getBanquetPath($id)
 	{
 		$parts = parse_url(base_url());
 		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
-		$path = "assets/images/product/";
+		$path = "assets/images/banquet/".$id."/";
 		if(!is_dir($path)){
 			mkdir($path,0777,true);
 		}
 		return $path.'/';
 	}
 }
-if ( ! function_exists('getProductFile'))
+if ( ! function_exists('getBanquetFile'))
 {
-	function getProductFile()
+	function getBanquetFile($id)
 	{
 		$parts = parse_url(base_url());
 		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
-		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/product/";
+		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/banquet/".$id."/";
 	}
 }
+
+if ( ! function_exists('getNewsPath'))
+{
+	function getNewsPath($id)
+	{
+		$parts = parse_url(base_url());
+		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
+		$path = "assets/images/news/".$id."/";
+		if(!is_dir($path)){
+			mkdir($path,0777,true);
+		}
+		return $path.'/';
+	}
+}
+if ( ! function_exists('getNewsFile'))
+{
+	function getNewsFile($id)
+	{
+		$parts = parse_url(base_url());
+		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
+		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/news/".$id."/";
+	}
+}
+
+if ( ! function_exists('getVideoPath'))
+{
+	function getVideoPath($id)
+	{
+		$parts = parse_url(base_url());
+		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
+		$path = "assets/images/video/".$id."/";
+		if(!is_dir($path)){
+			mkdir($path,0777,true);
+		}
+		return $path.'/';
+	}
+}
+if ( ! function_exists('getVideoFile'))
+{
+	function getVideoFile($id)
+	{
+		$parts = parse_url(base_url());
+		// return $parts['scheme']."://".$parts['host'] . $parts['path'];
+		return $parts['scheme']."://".$parts['host'] ."/newplaceofficial/assets/images/video/".$id."/";
+	}
+}
+
 
 if ( ! function_exists('isFileExist'))
 {
@@ -110,6 +157,20 @@ if ( ! function_exists('isFileExist'))
 				return 0;
 			}
 		}
+	}
+}
+
+if ( ! function_exists('isDirEmpty'))
+{
+	function isDirEmpty($dir)
+	{
+		$handle = opendir($dir);
+		while (false !== ($entry = readdir($handle))) {
+			if ($entry != "." && $entry != "..") {
+			return FALSE;
+			}
+		}
+		return TRUE;
 	}
 }
 

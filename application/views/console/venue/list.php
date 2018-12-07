@@ -2,7 +2,6 @@
   .venue-card{
     background-size: 100% auto;
     background-repeat: no-repeat;
-    color:
   }
   .venue-card .header{
     border-bottom:0px;
@@ -17,6 +16,7 @@
     color:#8c8c8c;
   }
   .venue-card .footer{
+    background:white;
     display:flex;
     border-top:1px solid #dbdbdb;
   }
@@ -27,6 +27,9 @@
     color: #8c8c8c;
     padding: 7px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .venue-card .footer .card-btn:nth-last-child(1){
     border-right:0;
@@ -47,7 +50,7 @@
                 <p>档期: <?=$value['schedule']?></p>
             </div>
             <div class="footer" data-id="<?=$value['id']?>">
-              <a class="card-btn btn-remove">删除</a>
+              <a class="card-btn btn-remove"><span>删除</span></a>
               <?php if(count($list)>1 && $key == 0){ ?>
                 <!-- 下移 -->
                 <a class="card-btn card-move" data-type="down"><i class="material-icons">chevron_right</i></a>
@@ -56,9 +59,8 @@
                 <!-- 上移 -->
                 <a class="card-btn card-move" data-type="up"><i class="material-icons">chevron_left</i></a>
               <?php } ?>
-              
-              
-              <a href="<?=base_url('console/venue_edit/').$value['id']?>" class="card-btn">编辑</a>
+              <a href="<?=base_url('console/venue_edit/').$value['id']?>" class="card-btn"><span>编辑</span></a>
+              <a href="<?=base_url('console/venue_setVenueImg/').$value['id']?>" class="card-btn"><span>详情照片</span></a>
             </div>
         </div>
     </div>
@@ -90,6 +92,7 @@
                           '</div>'+
                       '</div>'+
                   '</div>',
+          showConfirmButton: false,
           html: true
         });
         var id = $(that).closest('.footer').data('id');
