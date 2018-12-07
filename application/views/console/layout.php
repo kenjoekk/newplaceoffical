@@ -229,6 +229,17 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="<?php if($path == 'advisory_list'){echo 'active';}?>">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">event</i>
+                            <span>预约谘询</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="<?php if($path == 'advisory_list'){echo 'active';}?>">
+                                <a href="<?=base_url('console/advisory_list')?>">预约列表</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->

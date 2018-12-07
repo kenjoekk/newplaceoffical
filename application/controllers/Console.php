@@ -83,10 +83,14 @@ class console extends CI_Controller {
 		$this->load->view('console/layout',$data);
 	}
 
-	public function video_list(){
+	public function video_list($tab=""){
 		$user = get_user_session();
+		$this->load->model('videoModel');
 		$data['page'] = 'console/video/list';
 		$data['path'] = 'video_list';
+		$data['list'] = $this->videoModel->getVideoList();
+		$data['tab'] = $tab;
+		
 		$this->load->view('console/layout',$data);
 	}
 
@@ -154,6 +158,15 @@ class console extends CI_Controller {
 		$data['page'] = 'console/news/edit';
 		$data['path'] = 'news_edit';
 		$data['news'] = $this->newsModel->getNewsOnce($id);
+		$this->load->view('console/layout',$data);
+	}
+
+	public function advisory_list(){
+		$user = get_user_session();
+		$this->load->model('advisoryModel');
+		$data['page'] = 'console/advisory/list';
+		$data['path'] = 'advisory_list';
+		$data['list'] = $this->advisoryModel->get_list();
 		$this->load->view('console/layout',$data);
 	}
 

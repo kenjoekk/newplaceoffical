@@ -75,13 +75,19 @@
                       <input type="text" class="form-control" name="chiness_name" required>
                   </div>
               </div>
-              <label class="form-label">婚宴價格</label>
+              <label class="form-label">副标题</label>
+              <div class="form-group">
+                  <div class="form-line">
+                      <input type="text" class="form-control" name="sub_title" required>
+                  </div>
+              </div>
+              <label class="form-label">婚宴價格 (元起/桌)</label>
               <div class="form-group">
                   <div class="form-line">
                       <input type="text" class="form-control" name="money" required>
                   </div>
               </div>
-              <label class="form-label">容納桌數</label>
+              <label class="form-label">容納桌數 (桌)</label>
               <div class="form-group">
                   <div class="form-line">
                       <input type="text" class="form-control" name="table_num" required>
@@ -93,7 +99,7 @@
                     <textarea rows="4" class="form-control no-resize" name="detail" required></textarea>
                   </div>
               </div>
-              <label class="form-label">档期开始时间</label>
+              <!-- <label class="form-label">档期开始时间</label>
               <div class="form-group">
                 <div class="form-line">
                   <input type="text" name="start-schedule" class="datepicker form-control" data-dtp="dtp_izTTT" required>
@@ -104,7 +110,7 @@
                 <div class="form-line">
                   <input type="text" name="end-schedule" class="datepicker form-control" data-dtp="dtp_izTTT" required>
                 </div>
-              </div>
+              </div> -->
               <button class="btn btn-default waves-effect" type="reset">重写</button>
               <button class="btn btn-primary waves-effect" type="submit">新增</button>
             </div>
@@ -130,7 +136,9 @@ $(function(){
   $('.img-input').on('change',function(){
     console.log('change');
     var that = this;
-    swal({
+    var file = $(this)[0].files[0];
+    if(file != undefined){
+      swal({
         title: "载入中...",
         text: '<div class="preloader">'+
                     '<div class="spinner-layer pl-red">'+
@@ -144,14 +152,15 @@ $(function(){
                  '</div>',
         showConfirmButton: false,
         html: true
-    });
-    var base = $.AdminBSB.fn.getBase64($(this)[0].files[0],function(status,base64){
-        swal.close();
-        if(status == '200'){
-          $(that).closest('div').find('.img-preview').attr('src',base64);
-          $(that).closest('div').find('.img-val').val(base64);
-        }
-    });
+      });
+      var base = $.AdminBSB.fn.getBase64(file,function(status,base64){
+          swal.close();
+          if(status == '200'){
+            $(that).closest('div').find('.img-preview').attr('src',base64);
+            $(that).closest('div').find('.img-val').val(base64);
+          }
+      });
+    }
   });
 
   $('.add-img-block').on('click',function(){

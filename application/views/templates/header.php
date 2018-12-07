@@ -75,6 +75,14 @@
 
 </script>
 <style>
+  body {
+      background: #fff;
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+  }
   li{
     width:120px;
     text-align:center;
@@ -95,16 +103,77 @@
   margin-top: 0; }     
 
   .headerColor{
+    color:#fff !important;
+
+  }
+  .nav-item{
+    position:relative;
+  }
+  .nav-item:after{
+    content:'';
+    width:1px;
+    background:white;
+    height: 30px;
+    position: absolute;
+    top: 13px;
+    right: 0px;
+    /* border-right: 1px solid white; */
+  }
+  .nav-item:nth-last-child(1):after{
+    height: 0px;
+  }
+  .nav-link p{
+    margin-bottom:0rem;
+    font-size:16px;
+  }
+  .nav-link p:nth-child(2){
+    font-size:12px;
+  }
+  .navbar-brand{
+    margin-right:0;
+    width:80px;
+  }
+  .absolute-nav{
+    position:absolute;
+  }
+  .normal-nav{
+    position:unset;
+    background:white;
+    box-shadow:0px 1px 10px 0px rgba(0,0,0,0.3);
+  }
+  .normal-nav p,{
+    color:black !important;
+  }
+  .normal-nav .nav-item:after{
+    background:black;
+  }
+  .normal-nav .nav-link p:nth-child(2){
+    font-size:12px;
+    color:#887200 !important;
+  }
+  .normal-nav .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+  .normal-nav .navbar-dark .navbar-toggler{
+    border-color:rgba(0,0,0,0.5);
+  }
+  .normal-nav .headerColor{
     color:#000 !important;
 
+  }
+  @media(max-width:991px){
+    .navbar-brand{
+      margin-right:0;
+      width:50px;
+    } 
   }
 
 </style>
 <section>
-  <div class="container-fluid shadow-5" style="background-color:white;">
-    <div class="container" style="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo 'position:absolute;';}else{echo 'position:unset;';}?>">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-trans" >
-        <a class="navbar-brand" href="#"><span class="headerColor">new place</span></a>
+  <div class="container-fluid <?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo 'absolute-nav';}else{echo 'normal-nav';}?>">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-trans">
+        <a class="navbar-brand" href="<?=base_url('pages/home');?>"><img src="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo base_url('assets/images/homePage/icon.png');}else{echo base_url('assets/images/homePage/icon-black.png');}?>" alt=""></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -114,32 +183,49 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link headerColor" id="homeId" href="#" lang='1' ><?php echo $lang['home'];?> <span class="sr-only">(current)</span></a>
+              <a class="nav-link headerColor" id="homeId" href="<?=base_url('pages/home');?>" lang='1' >
+                <p><?php echo $lang['home'];?></p>
+                <p>INDEX</p>
+              </a>
             </li>
             <li class="nav-item" >
-              <a class="nav-link headerColor" id="banquetId" href="#" ><?php echo $lang['banquet'];?></a>
+              <a class="nav-link headerColor" id="banquetId" href="<?=base_url('pages/venue_list');?>" >
+                <p><?php echo $lang['banquet'];?></p>
+                <p>BANQUET</p>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link headerColor" id="showcaseId" href="#"><?php echo $lang['showcase'];?></a>
+              <a class="nav-link headerColor" id="showcaseId" href="<?=base_url('pages/film');?>">
+                <p><?php echo $lang['showcase'];?></p>
+                <p>SHOWCASE</p>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link headerColor" id="packageId" href="#"><?php echo $lang['package'];?></a>
+              <a class="nav-link headerColor" id="packageId" href="<?=base_url('pages/wedding_feast');?>">
+                <p><?php echo $lang['package'];?></p>
+                <p>PACKAGE</p>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link headerColor" id="serviceId" href="#"><?php echo $lang['service'];?></a>
+              <a class="nav-link headerColor" id="serviceId" href="<?=base_url('pages/banquet_service');?>">
+                <p><?php echo $lang['service'];?></p>
+                <p>SERVICE</p>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link headerColor" id="eventsId" href="#"><?php echo $lang['events'];?></a>
+              <a class="nav-link headerColor" id="eventsId" href="<?=base_url('pages/events');?>">
+                <p><?php echo $lang['events'];?></p>
+                <p>EVENTS</p>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link headerColor" id="resortId" href="#"><?php echo $lang['resort'];?></a>
+              <a class="nav-link headerColor" id="resortId" href="<?=base_url('pages/reservation');?>">
+                <p><?php echo $lang['resort'];?></p>
+                <p>PRESORT</p>
+              </a>
             </li>
             
           </ul>
-          <div style="color:white">
-              <a class="changeLang headerColor" stlye="text-align:right;">中/英</a>
-              <input type="hidden" name="changeInputId" id="changeInputId" value="<?php echo $lang['langType']?>">
-          </div>
           
         </div>
       </nav>
@@ -150,6 +236,10 @@
 
     <!-- jQuery (Bootstrap 所有外掛均需要使用) -->
     <script src="<?php echo base_url('assets/js/jquery-2.1.4.min.js')?>"></script>
+    <script href="<?php echo base_url('assets/js/bootstrap/bootstrap.min.js')?>" rel="stylesheet"> </script>
+        
+        <script src="<?php echo base_url('assets/js/bootstrap/bootstrap.bundle.min.js')?>"></script>
+
      <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
    <script type="text/javascript">
 

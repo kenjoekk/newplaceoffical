@@ -11,6 +11,7 @@ class ConsoleApi extends CI_Controller {
     $this->load->model('banquetModel');
     $this->load->model('newsModel');
     $this->load->model('videoModel');
+    $this->load->model('advisoryModel');
   }
   public function login()
   {
@@ -88,6 +89,7 @@ class ConsoleApi extends CI_Controller {
   public function addVenue(){
     $data['english_name'] = $this->input->post('english_name');
     $data['chiness_name'] = $this->input->post('chiness_name');
+    $data['sub_title'] = $this->input->post('sub_title');
     $data['money'] = $this->input->post('money');
     $data['table_num'] = $this->input->post('table_num');
     $data['detail'] = $this->input->post('detail');
@@ -109,6 +111,7 @@ class ConsoleApi extends CI_Controller {
     $v_id = $this->input->post('v_id');
     $data['english_name'] = $this->input->post('english_name');
     $data['chiness_name'] = $this->input->post('chiness_name');
+    $data['sub_title'] = $this->input->post('sub_title');
     $data['money'] = $this->input->post('money');
     $data['table_num'] = $this->input->post('table_num');
     $data['detail'] = $this->input->post('detail');
@@ -414,6 +417,7 @@ class ConsoleApi extends CI_Controller {
 
   public function addVideo(){
     $data['type'] = $this->input->post('type');
+    $tab = $this->input->post('tab');
     $path = $_FILES['path']['tmp_name']!=''?$_FILES['path']:'';
 
     $n_id = $this->videoModel->addVideo($data);
@@ -423,7 +427,60 @@ class ConsoleApi extends CI_Controller {
       copy($path['tmp_name'] , getVideoPath($n_id).$filename);
       $this->videoModel->editVideo($n_id,array('path'=>$filename.'?'.rand()));
     }
-    redirect('console/video_list','refresh');
+    redirect('console/video_list/'.$tab,'refresh');
+  }
+
+  public function editVideo(){
+    $n_id = $this->input->post('id');
+    $data['type'] = $this->input->post('type');
+    $tab = $this->input->post('tab');
+    $path = $_FILES['path']['tmp_name']!=''?$_FILES['path']:'';
+
+    // $n_id = $this->videoModel->addVideo($data);
+    if($path != ''){
+      $fileType = explode('/',$path['type']);
+      $filename = $n_id.'video.'.$fileType[1];
+      copy($path['tmp_name'] , getVideoPath($n_id).$filename);
+      $this->videoModel->editVideo($n_id,array('path'=>$filename.'?'.rand()));
+    }
+    redirect('console/video_list/'.$tab,'refresh');
+  }
+
+  public function removeVideo(){
+    $id = $this->input->post('id');
+    $this->videoModel->removeVideo($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  public function moveVideo(){
+    $id = $this->input->post('id');
+    $type = $this->input->post('type');
+    $this->videoModel->moveVideo($id,$type);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  /***************
+        預約
+  ****************/
+  
+  public function doneAdvisory(){
+    $id = $this->input->post('id');
+    $this->advisoryModel->doneAdvisory($id);
+    $json_arr['status'] = '200';
+    $json_arr['msg'] = '成功';
+    echo json_encode($json_arr);
+  }
+
+  public function insertRemark(){
+    $id = $this->input->post('id');
+    $data['remark'] = $this->input->post('remark');
+
+    $this->advisoryModel->updateAdvisory($id,$data);
+    redirect('console/advisory_list','refresh');
   }
 
   public function test(){

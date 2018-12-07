@@ -15,19 +15,26 @@ class pages extends CI_Controller {
 
 	public function home(){
 
-	$homeHeaderBackground='homeHeaderBackground';
-	
+		$homeHeaderBackground='homeHeaderBackground';
+		
 
-	$langType = $this->input->get('lang');
-	$langType = $langType!=''?$langType:'';
-	$lang = $this->language($langType);
-	
-	$data['lang'] = $lang;
-	$data['homeHeaderBackground'] = $homeHeaderBackground;
+		$langType = $this->input->get('lang');
+		$langType = $langType!=''?$langType:'';
+		$lang = $this->language($langType);
+		$this->load->model('venueModel');
+		$this->load->model('newsModel');
+		$this->load->model('videoModel');	
 
-	//data概念像封包，里面装key(lang、homeHeader) =>value
-	$this->load->view('templates/header',$data);
-	$this->load->view('templates/home');
+		$data['lang'] = $lang;
+		$data['homeHeaderBackground'] = $homeHeaderBackground;
+		
+		$data['venue'] = $this->venueModel->get_venue_list();
+		$data['news'] = $this->newsModel->getNewsList();
+		$data['case'] = $this->videoModel->getSwiper();
+
+		//data概念像封包，里面装key(lang、homeHeader) =>value
+		$this->load->view('templates/header',$data);
+		$this->load->view('templates/home');
     $this->load->view('templates/footer');
 
 
@@ -51,9 +58,11 @@ class pages extends CI_Controller {
 		
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
-		$pagination = $this->pagination();
-		$data['page'] = $pagination;
+		// $pagination = $this->pagination();
+		$this->load->model('venueModel');
+		// $data['page'] = $pagination;
 		$data['lang']=$lang;
+		$data['venue'] = $this->venueModel->get_venue_list();
 		// $config = $this->setPLink("/page/goEcho",300);
 		// echo $this->pagination->create_links();
 		
@@ -64,12 +73,9 @@ class pages extends CI_Controller {
 		$this->load->view('templates/footer');
 
 
-		$this->load->model('venueListModel');
 		
 		
-
-		$m_res=$this->venueListModel->get_venue_page();
-
+		
 		
 
 		// $id=isset($_GET['id'])?$_GET['id']:'';判斷$id有沒有值 沒有的話給他空值
@@ -105,18 +111,22 @@ class pages extends CI_Controller {
 
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
+		$this->load->model('banquetModel');
 		$data['lang']=$lang;
+		$data['feast']=$this->banquetModel->getBanquetList();
 
 		$this->load->view('templates/header',$data);
 		$this->load->view('templates/wedding_feast');
 		$this->load->view('templates/footer');
 
 	}
-	public function wedding_feast_info(){
+	public function wedding_feast_info($id){
 		
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
+		$this->load->model('banquetModel');
 		$data['lang']=$lang;
+		$data['feast']=$this->banquetModel->get_once_banquet_with_img($id);
 		
 		$this->load->view('templates/header',$data);
 		$this->load->view('templates/wedding_feast_info');
@@ -137,7 +147,9 @@ class pages extends CI_Controller {
 	public function events(){
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
+		$this->load->model('newsModel');
 		$data['lang']=$lang;
+		$data['news'] = $this->newsModel->getNewsList();
 
 		$this->load->view('templates/header',$data);
 		$this->load->view('templates/events');

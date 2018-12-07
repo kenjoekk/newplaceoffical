@@ -69,7 +69,7 @@
                       <input type="text" class="form-control" name="title" required>
                   </div>
               </div>
-              <label class="form-label">方案價格</label>
+              <label class="form-label">方案價格 (元/桌起)</label>
               <div class="form-group">
                   <div class="form-line">
                       <input type="number" class="form-control" name="money" required>

@@ -57,7 +57,7 @@
           <form action="<?=base_url('consoleApi/editNews');?>" method="POST" enctype= multipart/form-data>
             <input type="hidden" name="n_id" value="<?=$news['id']?>">
             <div class="col-sm-12">
-              <label for="">活動主圖</label>
+              <label for="">活動主圖 (720X600比例)</label>
               <div class="form-group">
                     <div class="col-sm-12 p-l-0 p-r-0"><img src="<?=$news['img_url']?>" alt="" class="col-xs-8 col-sm-4 p-l-0 p-r-0 img-preview"></div>
                     <input type="hidden" class="img-val">

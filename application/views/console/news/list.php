@@ -34,6 +34,9 @@
   .venue-card .footer .card-btn:nth-last-child(1){
     border-right:0;
   }
+  .venue-card .footer .card-btn span{
+    height:24px;
+  }
   .only-line{
     overflow: hidden;
     text-overflow:ellipsis;

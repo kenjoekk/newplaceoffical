@@ -18,7 +18,7 @@
     }
   
     function getNewsList(){
-      $this->db->order_by('update_date','ASC');
+      $this->db->order_by('update_date','DESC');
       $res = $this->db->get('news')->result_array();
   
       foreach ($res as $key => $value) {

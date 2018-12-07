@@ -34,6 +34,9 @@
   .venue-card .footer .card-btn:nth-last-child(1){
     border-right:0;
   }
+  .venue-card .footer .card-btn span{
+    height:24px;
+  }
 </style>
 <div class="row clearfix">
   <?php foreach ($list as $key => $value) { ?>
@@ -47,7 +50,7 @@
                 <h4><?=$value['chiness_name']?></h4>
                 <p>价格: <?=$value['money']?></p>
                 <p>桌数: <?=$value['table_num']?></p>
-                <p>档期: <?=$value['schedule']?></p>
+                <!-- <p>档期: <?=$value['schedule']?></p> -->
             </div>
             <div class="footer" data-id="<?=$value['id']?>">
               <a class="card-btn btn-remove"><span>删除</span></a>

@@ -88,7 +88,7 @@ class BanquetModel extends CI_Model {
     }
   }
 
-
+  
   function get_once_banquet_with_img($id){
     $this->db->where('id',$id);
     $this->db->select('id,title');
