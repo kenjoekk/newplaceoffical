@@ -1,5 +1,4 @@
 
-<head>
   <style>
     .buttonIconStyleEvents{
         background-color:#967d00;
@@ -45,7 +44,6 @@
     }
    
   </style>
-</head>
 <body>
 <?php 
 

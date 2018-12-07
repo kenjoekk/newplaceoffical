@@ -56,7 +56,7 @@
       background-size:cover;
     }
     .homeTitleTxt{
-      padding:30%;
+      /* padding:20%; */
       color:white;
       font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
@@ -84,10 +84,9 @@
      
      </style>
      <body>
-
       <div id="homeTitlePic" style="text-align:center;background-image:url('<?php echo base_url('assets/images/homePage/home_f_1.jpg')?>')">
         <div class="homeTitleTxt">
-          <h1>雅悦新天地</h1>
+          <img src="">
         </div>  
       </div>
 
@@ -100,7 +99,7 @@
     
     <div class="container d-flex justify-content-center pt-3" >
       <div class="row">
-         <h2 class="p-4">我們的服務
+         <h2 class="p-4">我們的服務 </h2>
       </div>
     </div>
     

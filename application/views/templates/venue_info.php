@@ -1,5 +1,3 @@
-
-<head>
   <style>
     html, body {
       position: relative;
@@ -42,13 +40,13 @@
     .bannerBackgroundColor{
         background-color:#aa942f;
         height:500px;
-        width:1100px;
+        width:1040px;
         position:absolute;
-        left:21%;
+        left:25%;
         /* right:390px; */
         z-index:1;
     }
-    @media (max-width: 500px) { 
+    @media (max-width: 1200px) { 
         .infoStyle{
             color:black!important;
             background-color:#ece9df;
@@ -78,6 +76,19 @@
         display:none;
         }
      }
+     @media(width:1920px)and(width:1440px){
+         .bannerBackgroundColor{
+            height:500px;
+            width:1040px;
+         }
+     }
+     @media(max-width:1440px){
+         .bannerBackgroundColor{
+            height:500px;
+            width:1000px;
+            left:19%;
+         }
+     }
      @media(max-width: 1200px){
         .infoStyle{
             color:black!important;
@@ -97,10 +108,13 @@
         color:white;
     }
     .infoTitleEn{
+        margin-bottom:0px;
         color:white;
+        font-size:24px;
     }
     .infoTitleCh{
         color:white;
+        font-size:20px;
     }
     .textIconStyleA{
         background-color:#574800;
@@ -118,14 +132,23 @@
     .infoDiv{
         margin-top:3.5rem;
     }
+    .titleName{
+        font-size:28px;
+        font-weight:bold;
+        color:#4d4000;
+        }
+    @media(max-width:768px){
+        .titleName{
+            font-size:20px;
+        }
+    }
 
   </style>
-</head>
 <body>
-    <div class="container">
+    <div class="container pt-xl-5">
           <div class="bannerBackgroundColor"></div>
         <div class="row">
-          <div class="level mt-5 col-xl-8 col-lg-12">
+          <div class="level mt-5 col-xl-8 col-lg-12 p-0">
             <div style="background-color:#fff" >
                 <div class="swiper-container gallery-top ">
                     <div >
@@ -153,34 +176,36 @@
                 </div>    
             </div>
           </div>
-          <div class="level col-xl-4 infoStyle infoDiv">
-              <p class="mt-3 infoTitleEn"><span> CAESAR</span></p>
+          <div class="level col-xl-4 infoStyle infoDiv p-4">
+              <p class="infoTitleEn"><span> CAESAR</span></p>
               <p class="infoTitleCh"><span> 凯萨厅 </span></p>  
-              <p><span class="textIconStyleA"> 优惠</span><span class="pl-2">官网预约探店即送钻石</span></p>  
-              <p><span> 婚宴价格：5999元起/桌</span></p>  
-              <p><span> 容纳桌数：10-24桌</span></p>  
-              <p><span> 场馆优势：Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam corporis ipsa aperiam, rem nemo doloribus? Ducimus, veritatis repudiandae fugit quibusdam id odio quo similique rem inventore maxime laudantium rerum quasi.</span></p> 
+              <p class="pt-2 pb-2 "><span class="textIconStyleA"> 优惠</span><span class="pl-2 pl-3" style="font-size:16px;">官网预约探店即送钻石</span></p>  
+              <p class="pb-2"><span style="font-size:16px;"> 婚宴价格：</span> <span>5999元起/桌</span></p>  
+              <p class="pb-2"><span style="font-size:16px;"> 容纳桌数：</span> <span>10-24桌</span></p>  
+              <p><span style="font-size:16px;"> 场馆优势：</span> <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam corporis ipsa aperiam, rem nemo doloribus? Ducimus, veritatis repudiandae fugit quibusdam id odio quo similique rem inventore maxime laudantium rerum quasi.</span></p> 
               <div class="pt-3 pb-5 row "><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">查看档期</span></div><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">预约看馆</span></div></div>  
           </div>
         </div>
         <!-- 场馆介绍 -->
-        
+        <div class="row d-flex justify-content-center pt-xl-3 pt-5"><span class="titleName">场馆详情</span></div>
+        <div class="row d-flex justify-content-center pt-2 pb-xl-5 pb-3"><img id="spLine" src="<?php echo base_url('assets/images/venue/1.png');?>"></div>
+    
     </div>
-
-
- 
 
     
 
   <!-- Initialize Swiper -->
   
   <script>
+
     $(function(){
         var w = $(window).width();
         var h = $(window).height();
     var slidesNum = 4;
     if(w<500){
-        slidesNum = 2;  
+        slidesNum = 2; 
+        $('#spLine').attr('src','<?php echo base_url('assets/images/venue/2.png');?>');
+         
     } 
     var galleryThumbs = new Swiper('.gallery-thumbs', {
       spaceBetween: 10,
