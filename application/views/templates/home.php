@@ -73,7 +73,7 @@
       height:unset;
     }
   /* ----------------------------------------------------- */
-  .title-color{
+  .title-font-style{
     color:#5A4D18 !important;
   }
   .content-color{
@@ -83,7 +83,7 @@
       padding-top:50px;
       background-repeat: no-repeat;
       background-position-x: center;
-      margin-bottom:4rem;
+      margin-bottom:3rem;
     }
     .pt-6{
       padding-top: 6rem!important;
@@ -93,7 +93,7 @@
       border-top: 1px solid #C5C4C4;
     }
     .detail{
-      font-size:1.25rem;
+      font-size:1.00rem;
       line-height: 48px;
     }
     .title-b-line{
@@ -221,6 +221,12 @@
     .btn-outline-light:hover{
       color:black !important;
     }
+    .h_text_info{
+        text-align:center;
+    }
+    .h_center_banner_text_style{
+      font-size:16px;font-weight:lighter;
+    }
     @media(max-width:767px){
       .carousel-block{
         padding: 6% 7.2%;
@@ -231,25 +237,58 @@
       .order-card{
         padding-bottom:30px;
       }
+      .h_img_info{
+        background-color:#f4f1df;
+      }
+      .h_text_info{
+        text-align:center;
+      }
+      .detail{
+        font-size:0.75rem;
+        line-height: 24px;
+      }
+      .title-font-style{
+        font-size:1.25rem;
+      }
+      .title-with-top-img{
+        padding-top:50px;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        margin-bottom:2rem;
+      }
+      .h_center_banner_text_style{
+      font-size:14px;letter-spacing:2px;text-align:left;
+      }
     }
 </style>
      <body>
 
-      <div id="homeTitlePic">
-        <img src="<?=base_url('assets/images/homePage/home-p-1.png');?>" alt="">
+      <div id="homeTitlePic" >
+        <img id="hImg" src="<?=base_url('assets/images/homePage/home-p-1.png');?>" alt="">
+        </div>
+      <!-- 手机画面   -->
+      <div class="container pt-xl-5 pt-5 h_img_info h_t_style1">
+        <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h3>
+        <p class="detail content-color h_text_info">
+          采取当今新型婚礼服务模式(一站式婚礼会所)，
+        </p>
+        <p class="detail content-color h_text_info">提供以下服务：婚宴场地、婚宴饮食、婚庆策划、婚纱摄影、</p>
+        <p class="detail content-color h_text_info">微电影制作、喜糖、喜酒等</p>
+        <p class="detail content-color h_text_info">我们的特点：省心、省力、高效率、高品质！</p>
+        <hr class="my-hr">
       </div>
-      
-      <div class="container pt-6">
-        <h3 class="text-center title-with-top-img title-color" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h2>
-        <p class="text-center detail content-color">
-          我们的服务：采取当今新型婚礼服务模式一站式婚礼会所提供以下服务：婚宴场地、婚宴饮食、婚庆策划、婚纱摄影、微电影制作、喜糖、喜酒等我们的特点：省心、省力、高效率、高品质！
+      <!-- pc画面 -->
+      <div class="container pt-xl-5 pt-5 h_img_info h_t_style2">
+        <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h3>
+        <p class="detail content-color h_text_info">
+          采取当今新型婚礼服务模式(一站式婚礼会所)，提供以下服务：婚宴场地、婚宴饮食、婚庆策划、婚纱摄影、微电影制作、喜糖、喜酒等我们的特点：省心、省力、高效率、高品质！
         </p>
         <hr class="my-hr">
-    </div>
+      </div>
    
   
     <div class="container">
-      <h3 class="text-center title-with-top-img title-color" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">婚宴場館</h2>
+      <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">婚宴場館</h2>
       <div class="row">
         <?php foreach ($venue as $key => $value) { ?>
           <div class="col-md-6 col-lg-4 mb-4" >
@@ -263,7 +302,7 @@
                 </div>
               </div>
               <div class="card-body d-flex flex-column align-items-center">
-                <h5 class="card-title title-color"><?=$value['chiness_name']?></h5>
+                <h5 class="card-title title-font-style"><?=$value['chiness_name']?></h5>
                 <div class="title-b-line"></div>
                 <p class="content-color"><?=$value['sub_title']?></p>
                 <div>
@@ -278,23 +317,39 @@
 
     <div style="padding-top:50px">
       <div class="text-center btn-more-div" style="background-image:url('<?php echo base_url('assets/images/homePage/more-bg.png')?>')">
-        <a class="title-color" style="font-size:1.75rem;font-weight:500" href="<?=base_url('pages/venue_list');?>">更多场馆</a>
+        <a class="title-font-style" style="font-size:1.75rem;font-weight:500" href="<?=base_url('pages/venue_list');?>">更多场馆</a>
       </div>
     </div>  
     
     <hr class="featurette-divider">
 
     <div class="homeMidPic" style="text-align:center;background-image:url('<?php echo base_url('assets/images/homePage/home-p-2.png')?>')">
-      <div>
+      <!-- 手机画面 -->
+      <div class="h_t_style1">
         <div class="row justify-content-center flex-column p-3">
-          <h1 class="pb-3">魔都最好吃的婚宴料理</h1>
-          <h3 class="pt-5 ">从食材的采购、挑选、清洗到颜色的搭配、烹饪的火侯、花式的摆盘.....</h3>
-          <h3 class="pb-5">特聘顶级除湿严格把控每场料理的一分一毫，给予参加婚宴的宾客最极致的味蕾体验！最幸福的时刻我们用美味与之相伴</h3>
+          <span class="pb-3"><h3>魔都最好吃的婚宴料理</h3></span>
+          <span class="pt-4 h_center_banner_text_style" >从食材的采购、挑选、清洗到颜色的搭</span>
+          <span class="pt-2 h_center_banner_text_style">配、烹饪的火侯花式的摆盘.....特聘顶级</span>
+          <span class="pt-2 h_center_banner_text_style">厨师严格把控每场料理的一分一毫，给予</span>
+          <span class="pt-2 h_center_banner_text_style">参加婚宴的宾客最极致的味蕾体验！最幸</span>
+          <span class="pt-2 h_center_banner_text_style">福的时刻我们用美味与之相伴</span>
           <div>
             <a class="btn btn-outline-light mt-5" href="<?=base_url('pages/wedding_feast');?>">了解更多</a>
           </div>
         </div>
-      </div>  
+      </div>
+      <!-- pc画面 -->
+      <div class="h_t_style2">
+        <div class="row justify-content-center flex-column p-3">
+          <span class="pb-3"><h3>魔都最好吃的婚宴料理</h3></span>
+          <span class="pt-4 h_center_banner_text_style" >从食材的采购、挑选、清洗到颜色的搭配、烹饪的火侯、花式的摆盘.....</span>
+          <span class="pt-3 h_center_banner_text_style" >特聘顶级厨师严格把控每场料理的一分一毫，给予参加婚宴的宾客最极致的味蕾体验！</span>
+          <span class="pb-5 pt-3 h_center_banner_text_style" >最幸福的时刻我们用美味与之相伴</span>
+          <div>
+            <a class="btn btn-outline-light mt-5" href="<?=base_url('pages/wedding_feast');?>">了解更多</a>
+          </div>
+        </div>
+      </div>       
     </div>
 
     
@@ -324,7 +379,7 @@
         </div>
         <div class="col-md-6 reservationPic px-5 d-flex flex-column justify-content-center">
           <div>
-            <h3 class="text-center title-with-top-img order-title title-color mb-2" style="background-image:url('<?=base_url('assets/images/homePage/order-title.png');?>')">立即预约</h2>
+            <h3 class="text-center title-with-top-img order-title title-font-style mb-2" style="background-image:url('<?=base_url('assets/images/homePage/order-title.png');?>')">立即预约</h2>
           </div>
           <form>
             <div class="inline-form">
@@ -482,6 +537,21 @@
     
     
   </script>
-  
+    <script>
+      $(function(){
+          var w = $(window).width();
+          var h = $(window).height();
+        if(w<768){
+          $('#hImg').attr('src','<?php echo base_url('assets/images/homePage/home-p-1-2.png');?>');
+          $('.h_t_style2').hide();
+          $('.h_t_style1').show();
+                 }else{
+          $('.h_t_style2').show();
+          $('.h_t_style1').hide();
+                 }
+                  
+      })
+    </script>
+    
 
   </body>

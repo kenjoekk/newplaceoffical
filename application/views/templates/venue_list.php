@@ -36,7 +36,31 @@
         color:white!important;
         font-size:16px;
     
-    }    
+    }   
+    .v_list_img_style{
+        padding:1.5rem;
+    }
+    @media(max-width:768px){
+        .v_list_img_style{
+            padding:0rem;
+        }
+        .v_l_text_style{
+            display:none;
+        }
+        .v_l_text_title_style{
+            text-align:center;
+            padding-top:1rem;
+        }
+        .v_l_btn_style{
+            transition:transform .2s ease-in;
+            background:#8c7200;
+            border-color:#8c7200;
+            border-radius:1.5rem;
+            padding-left:3rem;
+            padding-right:3rem;
+            color:white !important;
+        }
+    } 
 
 </style>
 <body>
@@ -48,20 +72,20 @@
                 <div class="shadow-3 mt-5 page-item <?php if($page==0){echo 'active';}?>" data-page="<?=$page?>">
                     <div class="row ">
                         <div class="col-xl-8">
-                            <img class="w-100 p-4" src="<?php echo $value['img_url'];?>" alt="123">
+                            <img class="w-100 v_list_img_style" src="<?php echo $value['img_url'];?>" alt="123">
                         </div>
-                        <div class="col-xl-4 d-flex align-items-center">
-                            <div>
-                                <div class="col"><h2 class="contentColor"><?=$value['english_name']?></h2></div>
-                                <div class="col"><h4 class="contentColor"><?=$value['chiness_name']?></h4></div>
-                                <div class="col pt-4"><p  class="contentColor">婚宴价格：<?=$value['money']?>元起/桌</p></div>
-                                <div class="col pt-3"><p  class="contentColor">容纳桌数：<?=$value['table_num']?>桌</p></div>
-                                <div class="col pt-3"><p  class="contentColor wb-all">场馆优势：<?=$value['detail']?></p></div>
+                        <div class="col-xl-4 d-flex align-items-center" >
+                            <div class="col-12">
+                                <div class="col v_l_text_style"><h2 class="contentColor"><?=$value['english_name']?></h2></div>
+                                <div class="col v_l_text_title_style"><h4 class="contentColor"><?=$value['chiness_name']?></h4></div>
+                                <div class="col pt-4 v_l_text_style"><p  class="contentColor">婚宴价格：<?=$value['money']?>元起/桌</p></div>
+                                <div class="col pt-3 v_l_text_style"><p  class="contentColor">容纳桌数：<?=$value['table_num']?>桌</p></div>
+                                <div class="col pt-3 v_l_text_style"><p  class="contentColor wb-all">场馆优势：<?=$value['detail']?></p></div>
                                 
-                                <div class="d-flex justify-content-center pt-4 pb-4 pb-xl-0">
-                                    <a class="btn m-2">预约看馆</a>
-                                    <a class="btn m-2">查看档期</a>
-                                    <a class="btn m-2" href="<?=base_url('pages/venue_info/').$value['id']?>">查看详情</a> 
+                                <div class="d-flex justify-content-center pt-xl-4 pb--xl-4 pb-2 pb-xl-0">
+                                    <a class="btn m-2 v_l_text_style">预约看馆</a>
+                                    <a class="btn m-2 v_l_text_style">查看档期</a>
+                                    <a class="btn m-2 v_l_btn_style" href="<?=base_url('pages/venue_info/').$value['id']?>">查看详情</a> 
                                 </div>
                             </div>
                         </div>
@@ -149,3 +173,18 @@ $(function(){
     });
 })
 </script>
+
+<!-- <script>
+    $(function(){
+        var w = $(window).width();
+        var h = $(window).height();
+    if(w<768){
+        $('.v_l_text_style').hide();
+        $('.h_t_style1').show();
+                }else{
+        $('.h_t_style2').show();
+        $('.h_t_style1').hide();
+                }
+                
+    })
+</script> -->

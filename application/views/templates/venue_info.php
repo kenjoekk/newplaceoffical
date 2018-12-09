@@ -64,10 +64,10 @@
          .infoTitleCh{
             color:#574800!important;
             text-align:center;
-            margin-top:30px;
-            margin-bottom:25px;
+            margin-top:0.5rem;
+            margin-bottom:0.5rem;
             font-weight:bold;
-            font-size:18px;
+            font-size:16px;
         }
         .infoDiv{
         margin-top:0.25rem!important;
@@ -76,13 +76,13 @@
         display:none;
         }
      }
-     @media(width:1920px)and(width:1440px){
+     @media(width:1920px)and(width:1480px){
          .bannerBackgroundColor{
             height:500px;
             width:1040px;
          }
      }
-     @media(max-width:1440px){
+     @media(max-width:1480px){
          .bannerBackgroundColor{
             height:500px;
             width:1000px;
@@ -137,9 +137,22 @@
         font-weight:bold;
         color:#4d4000;
         }
+    .swiper-button-next{
+        background-image:url('../assets/images/homePage/next.png');
+        width:35px;
+        height:35px;
+        background-size: 100%;
+    }
+    .swiper-button-prev{
+      background-image:url('../assets/images/homePage/prev.png');
+      width:35px;
+      height:35px;
+      background-size: 100%;
+    }    
     @media(max-width:768px){
         .titleName{
-            font-size:20px;
+            font-size:16px;
+            font-weight:bold;
         }
     }
 
@@ -162,8 +175,8 @@
                     </div>
                    
                         <!-- Add Arrows -->
-                    <div class="swiper-button-next swiper-button-white"></div>
-                    <div class="swiper-button-prev swiper-button-white"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
                 <div class="swiper-container gallery-thumbs">
                     <div class="swiper-wrapper" >
@@ -180,16 +193,15 @@
               <p class="infoTitleEn"><span> CAESAR</span></p>
               <p class="infoTitleCh"><span> 凯萨厅 </span></p>  
               <p class="pt-2 pb-2 "><span class="textIconStyleA"> 优惠</span><span class="pl-2 pl-3" style="font-size:16px;">官网预约探店即送钻石</span></p>  
-              <p class="pb-2"><span style="font-size:16px;"> 婚宴价格：</span> <span>5999元起/桌</span></p>  
-              <p class="pb-2"><span style="font-size:16px;"> 容纳桌数：</span> <span>10-24桌</span></p>  
-              <p><span style="font-size:16px;"> 场馆优势：</span> <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam corporis ipsa aperiam, rem nemo doloribus? Ducimus, veritatis repudiandae fugit quibusdam id odio quo similique rem inventore maxime laudantium rerum quasi.</span></p> 
-              <div class="pt-3 pb-5 row "><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">查看档期</span></div><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">预约看馆</span></div></div>  
+              <p class="pb-2"><span style="font-size:15px;"> 婚宴价格：</span> <span>5999元起/桌</span></p>  
+              <p class="pb-2"><span style="font-size:15px;"> 容纳桌数：</span> <span>10-24桌</span></p>  
+              <p><span style="font-size:15px;"> 场馆优势：</span> <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam corporis ipsa aperiam, rem nemo doloribus? Ducimus, veritatis repudiandae fugit quibusdam id odio quo similique rem inventore maxime laudantium rerum quasi.</span></p> 
+              <div class="pt-3 pb-2 row "><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">立即预约</span></div><div class="col-6 d-flex justify-content-center"><span class="textIconStyleB">查看档期</span></div></div>  
           </div>
         </div>
         <!-- 场馆介绍 -->
-        <div class="row d-flex justify-content-center pt-xl-3 pt-5"><span class="titleName">场馆详情</span></div>
+        <div class="row d-flex justify-content-center pt-xl-3 pt-3"><span class="titleName">场馆详情</span></div>
         <div class="row d-flex justify-content-center pt-2 pb-xl-5 pb-3"><img id="spLine" src="<?php echo base_url('assets/images/venue/1.png');?>"></div>
-    
     </div>
 
     
