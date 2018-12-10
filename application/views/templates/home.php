@@ -383,29 +383,26 @@
 
 <script type="text/javascript">
    
-   function checkSubmit(){
-     var name = $('#form-name').val();
-     var phone = $('#form-phone').val();
-     var question = $('#form-question').val();
-    if(name== ""){
-      alert('請填寫姓名');
-    }else if(phone == ""){
-      alert('請填寫电话');
-    }else if(question == ""){
-      alert('請填寫想要谘询的问题');
-    }else{
-      $.post('<?=base_url('pageApi/insert_form')?>',{
-        name:name,
-        phone:phone,
-        question:question
-      },function(data){
-        alert('感謝您的來信，我們會在24小時內回覆您。');
-        location.reload();
-      },'json');
-    }
-
-
-
+    function checkSubmit(){
+      var name = $('#form-name').val();
+      var phone = $('#form-phone').val();
+      var question = $('#form-question').val();
+      if(name== ""){
+        alert('請填寫姓名');
+      }else if(phone == ""){
+        alert('請填寫电话');
+      }else if(question == ""){
+        alert('請填寫想要谘询的问题');
+      }else{
+        $.post('<?=base_url('pageApi/insert_form')?>',{
+          name:name,
+          phone:phone,
+          question:question
+        },function(data){
+          alert('感謝您的來信，我們會在24小時內回覆您。');
+          location.reload();
+        },'json');
+      }
     }
 </script>
     </div>

@@ -2,7 +2,7 @@
   <style>
     .buttonIconStyleEvents{
         background-color:#967d00;
-        padding: 12px 50px 12px 50px ;
+        padding: 10px 50px;
         border-radius: 6px;
         color:white!important;
         font-size:16px;
@@ -37,6 +37,24 @@
     .wb-all{
         word-break:break-all;
     }
+    .btn{
+        transition:transform .1s ease-in;
+        background:#5A4D18;
+        border-color:#5A4D18;
+        color:white !important;
+    }
+    .btn:visited{
+        border-color:unset;
+    }
+    .btn:hover{
+        background:#756935;
+        border-color:#756935;
+        transform:scale(1.3);
+    }
+    .btn:active{
+        border-color:unset;
+        background:#5A4D18;
+    }
     @media(max-width:992px){
         .eventsInfo1{
           position:static;  
@@ -66,7 +84,7 @@
                     echo (strtotime($value['active_time']) - strtotime($today))/3600/24;
                   ?></span>天</div>
                     <div class="col-12 pt-1 pl-5"><img src="<?php echo base_url('assets/images/events/5.png');?>"><span class="pl-3">已参与数：</span><span style="color:#996600;"><?php echo $value['order_num']?></span>人</div>
-                    <div class="col-12 d-flex justify-content-center mt-3"><span class="buttonIconStyleEvents doActive">套餐详情></span></div>
+                    <div class="col-12 d-flex justify-content-center mt-3"><span class="buttonIconStyleEvents doActive btn">套餐详情></span></div>
                 </div>
             </div>
         </div>

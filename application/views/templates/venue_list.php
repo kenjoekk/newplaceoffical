@@ -3,7 +3,7 @@
         color:#666;
     }
     .btn{
-        transition:transform .2s ease-in;
+        transition:transform .1s ease-in;
         background:#5A4D18;
         border-color:#5A4D18;
         color:white !important;
