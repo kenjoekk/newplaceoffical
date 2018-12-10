@@ -59,6 +59,27 @@
     .boxShadow{
       box-shadow: 10px 10px 5px grey;
     }
+    .swiper-button-next{
+        background-image:url('../assets/images/homePage/next.png');
+        width:35px;
+        height:35px;
+        background-size: 100%;
+    }
+    .swiper-button-prev{
+      background-image:url('../assets/images/homePage/prev.png');
+      width:35px;
+      height:35px;
+      background-size: 100%;
+    }
+    .f-img-style_b{
+      width:366.66px;
+      height:271px;
+    }   
+    .f-img-style_c{
+      width:366.66px;
+      height:271px;
+    } 
+
     @media(max-width:576px){
       .formNewPalacePic{
         padding:20px 0px 20px 0px;
@@ -72,6 +93,9 @@
         width:100px;
         height:100px;
       }
+      .f-img-style_c{
+        margin-top:2rem;
+      } 
     }
     @media(min-width:577px){
       .formNewPalaceImg{
@@ -94,7 +118,7 @@
         $f_w_data[4]['f_w_img']=base_url('assets/images/filmArea/w_5.jpg');
       ?>
       
-      <div class="row pb-5 pt-5">
+      <div class="row pb-xl-5 pb-4 pt-xl-5 pt-4">
         <div class="swiper-container col-12" >
               <!-- Add Arrows -->
           <div class="swiper-button-next"></div>
@@ -108,18 +132,19 @@
         </div>
       </div>
       <div class="row pb-lg-4 pb-md-4">
-        <div class="col-lg-4 col-md-4 d-flex justify-content-center"><img class="shadow-5" src="<?php echo base_url('assets/images/filmArea/w_1.jpg')?>"></div>
-        <div class="col-lg-4 col-md-4 d-flex justify-content-center"><img class="shadow-5" src="<?php echo base_url('assets/images/filmArea/w_2.jpg')?>"></div>
-        <div class="col-lg-4 col-md-4 p-0 formNewPalaceBackground">
+        <div class="col-lg-4 col-md-4 d-flex justify-content-center p-0"><img class="shadow-5 f-img-style_b" src="<?php echo base_url('assets/images/filmArea/w_1.jpg')?>"></div>
+        <div class="col-lg-4 col-md-4 d-flex justify-content-center p-0"><img class="shadow-5 f-img-style_c" src="<?php echo base_url('assets/images/filmArea/w_2.jpg')?>"></div>
+        
+        <div class="col-lg-4 col-md-4  formNewPalaceBackground">
           <div class="d-flex justify-content-center formNewPalacePic"><img class="formNewPalaceImg" class="mb-lg-3 mb-md-3 mb-sm-3 mb-xs-3" src="<?php echo base_url('assets/images/filmArea/2.png')?>"></div>
-          <div style="text-align: center;"><span style="color:#bd9e0c;">雅悦新天地是一家集婚宴场地、婚宴饮食、婚庆策划、</span></div>
-          <div style="text-align: center;"><span style="color:#bd9e0c;">婚纱摄影、微电影制作、喜糖喜酒等服务的一站式婚宴会所。</span></div>
-          <img src="<?php echo base_url('assets/images/filmArea/3.png')?>">
+          <!-- <div class="pt-xl-3" style="text-align: center;"><span style="color:#bd9e0c;font-size:14px;">雅悦新天地是一家集婚宴场地、婚宴饮食、婚庆策划、</span></div>
+          <div class="pt-xl-2" style="text-align: center;"><span style="color:#bd9e0c;font-size:14px;">婚纱摄影、微电影制作、喜糖喜酒等服务的一站式婚宴会所。</span></div> -->
+          <div class="pt-xl-3 pb-xl-3"><img src="<?php echo base_url('assets/images/filmArea/3.png')?>"></div>
           <div class="form-group">
             <form action="#" method="post">
-              <div class="pt-2" style="height:40px"><input type="text" name="userName" placeholder="姓名" class="form-control formStyle form-control-sm"><br></div>
-              <div class="pt-2" style="height:40px"><input type="text" name="userPhone" placeholder="联络方式" class="form-control formStyle form-control-sm"><br></div>
-              <div class="pt-2 d-flex justify-content-center p"><input type="submit" value="预约报名" class="textIconStyle"></div>            
+              <div style="height:40px"><input type="text" name="userName" placeholder="姓名" class="form-control formStyle form-control-sm"><br></div>
+              <div style="height:40px"><input type="text" name="userPhone" placeholder="联络方式" class="form-control formStyle form-control-sm"><br></div>
+              <div class="pt-xl-3 d-flex justify-content-center p"><input type="submit" value="预约报名" class="textIconStyle"></div>            
             </form>
           </div>
           
