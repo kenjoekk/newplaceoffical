@@ -21,7 +21,11 @@ class VenueModel extends CI_Model {
     $res = $this->db->get('venue')->result_array();
 
     foreach ($res as $key => $value) {
-      $res[$key]['img_url'] = getVenueFile($value['id']).$value['img_url'];
+      $img_url = explode(',',$value['img_url']);
+      foreach ($img_url as $key2 => $value2) {
+        $img_url[$key2] = getVenueFile($value['id']).$value2;
+      } 
+      $res[$key]['img_url'] = $img_url;
     }
     return $res;
   }
@@ -29,7 +33,35 @@ class VenueModel extends CI_Model {
   function get_once_venue($id){
     $this->db->where('id',$id);
     $res = $this->db->get('venue')->row_array();
-    $res['img_url'] = getVenueFile($res['id']).$res['img_url'];
+    $img_url = explode(',',$res['img_url']);
+    foreach ($img_url as $key => $value) {
+      $img_url[$key] = getVenueFile($res['id']).$value;
+    } 
+    $res['img_url'] = $img_url;
+    return $res;
+  }
+
+  function getOnceVenueWithImageDetail($id){
+    $this->db->where('id',$id);
+    $res = $this->db->get('venue')->row_array();
+    $img_url = explode(',',$res['img_url']);
+    foreach ($img_url as $key => $value) {
+      $img_url[$key] = getVenueFile($res['id']).$value;
+    } 
+    $res['img_url'] = $img_url;
+
+    $this->db->where('venue_id',$res['id']);
+    $this->db->order_by('sequence','ASC');
+    $img = $this->db->get('venue_img')->result_array();
+    foreach ($img as $key => $value) {
+      $path = explode(',',$value['path']);
+      foreach ($path as $key2 => $value2) {
+        $path[$key2] = getVenueFile($res['id']).$value2;
+      }
+      $img[$key]['path'] = $path;
+    }
+    $res['venue_img'] = $img;
+
     return $res;
   }
 

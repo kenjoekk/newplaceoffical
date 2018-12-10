@@ -63,6 +63,7 @@ class pages extends CI_Controller {
 		// $data['page'] = $pagination;
 		$data['lang']=$lang;
 		$data['venue'] = $this->venueModel->get_venue_list();
+		$data['venue_list'] = $this->venueModel->get_venue_list();
 		// $config = $this->setPLink("/page/goEcho",300);
 		// echo $this->pagination->create_links();
 		
@@ -82,11 +83,14 @@ class pages extends CI_Controller {
 
 		
 	}
-	public function venue_info(){
+	public function venue_info($id=''){
 
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
+		$this->load->model('venueModel');
 		$data['lang']=$lang;
+		$data['venue'] = $this->venueModel->getOnceVenueWithImageDetail($id);
+		$data['venue_list'] = $this->venueModel->get_venue_list();
 		
 		$this->load->view('templates/header',$data);
 		$this->load->view('templates/venue_info');
@@ -99,7 +103,9 @@ class pages extends CI_Controller {
 		
 		$langType = $this->input->get('lang');
 		$lang = $this->language($langType);
+		$this->load->model('videoModel');
 		$data['lang']=$lang;
+		$data['list'] = $this->videoModel->getVideoListForWeb();
 
 
 		$this->load->view('templates/header',$data);

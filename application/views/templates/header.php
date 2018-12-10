@@ -167,13 +167,52 @@
       width:50px;
     } 
   }
+  @media(max-width:768px){
+    .navbar-brand{
+      width:50%;
+      position:relative;
+      right:-24%;
+    }
+    .navbar{
+      padding:0px;
+    }
+    .normal-nav,.absolute-nav{
+      background:#312B0C;
+    }
+    .absolute-nav .navbar-toggler-icon,.normal-nav .navbar-toggler-icon{
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+    .absolute-nav .navbar-dark .navbar-toggler,.normal-nav .navbar-dark .navbar-toggler{
+      border-color:#312B0C;
+      padding:1rem 0px;
+    }
+    .nav-item{
+      width:100%;
+    }
+    .nav-item:after{
+      width:0px;
+    }
+    .normal-nav .headerColor{
+      color:#fff !important;
+    }
+    .normal-nav p,{
+      color:white !important;
+    }
+    .normal-nav .nav-item:after{
+      background:black;
+    }
+    .normal-nav .nav-link p:nth-child(2){
+      font-size:12px;
+      color:white !important;
+    }
+  }
 
 </style>
 <section>
   <div class="container-fluid <?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo 'absolute-nav';}else{echo 'normal-nav';}?>">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-trans">
-        <a class="navbar-brand" href="<?=base_url('pages/home');?>"><img src="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo base_url('assets/images/homePage/icon.png');}else{echo base_url('assets/images/homePage/icon-black.png');}?>" alt=""></a>
+        <a class="navbar-brand" href="<?=base_url('pages/home');?>"><img src="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo base_url('assets/images/homePage/icon.png');}else{echo base_url('assets/images/homePage/icon-black.png');}?>" alt="" style="display:none"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -260,6 +299,17 @@
     </script>
 
     <!-- NAVBAR -->
+    <script>
+      $(function(){
+          var w = $(window).width();
+          var h = $(window).height();
+        if(w<768){
+          $('.navbar-brand').find('img').attr('src','<?php echo base_url('assets/images/footer/footerLogo.png');?>');
+        }
+        $('.navbar-brand').find('img').css('display','block');
+                  
+      })
+    </script>
 
     
    

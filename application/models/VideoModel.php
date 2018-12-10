@@ -95,6 +95,25 @@ class VideoModel extends CI_Model {
     }
     return $res;
   }
+
+  function getVideoListForWeb(){
+    $this->db->where('type','1');
+    $this->db->order_by('sequence','ASC');
+    $video = $this->db->get('video')->row_array();
+
+    $video['path'] = getVideoFile($video['id']).$video['path'];
+
+    $this->db->where('type','2');
+    $this->db->order_by('sequence','ASC');
+    $img = $this->db->get('video')->result_array();
+
+    foreach ($img as $key => $value) {
+      $img[$key]['path'] = getVideoFile($value['id']).$value['path'];
+    }
+    $res['video'] = $video;
+    $res['img'] = $img;
+    return $res;
+  }
   
 
 }
