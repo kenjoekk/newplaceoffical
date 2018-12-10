@@ -66,7 +66,7 @@
                     echo (strtotime($value['active_time']) - strtotime($today))/3600/24;
                   ?></span>天</div>
                     <div class="col-12 pt-1 pl-5"><img src="<?php echo base_url('assets/images/events/5.png');?>"><span class="pl-3">已参与数：</span><span style="color:#996600;"><?php echo $value['order_num']?></span>人</div>
-                    <div class="col-12 d-flex justify-content-center mt-3"><span class="buttonIconStyleEvents doActive">套餐详情></span></div>
+                    <div class="col-12 d-flex justify-content-center mt-3"><span class="buttonIconStyleEvents doActive">立即报名</span></div>
                 </div>
             </div>
         </div>

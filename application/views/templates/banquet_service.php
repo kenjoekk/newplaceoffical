@@ -2,19 +2,25 @@
 <head>
   <style>
     .titleName{
-        font-size:24px;
+        font-size:21px;
         font-weight:bold;
         color:#4d4000;
         }
     @media(max-width:768px){
         .titleName{
-            font-size:20px;
+            font-size:19px;
+            font-weight:bold;
+        color:#4d4000;
         }
     }
     .cardTextStyle{
         padding: 1rem 1.25rem;
         margin-bottom: 0;
         border-bottom: 1px solid rgba(0,0,0,.125);
+        font-size:19px;
+        font-weight:bold;
+        color:#4d4000;
+
     }
     .banquet-card{
         margin-bottom:30px;
@@ -33,8 +39,8 @@
 <body>
     <div class="container">
         <!-- title -->
-        <div class="text-center m-5">
-            <p class="titleName mb-2">宴会会务</p>
+        <div class="text-center m-lg-5 m-3">
+            <p class="titleName mb-lg-2 mb-0">宴会会务</p>
             <img src="<?php echo base_url('assets/images/banquetService/1.png');?>">
         </div>
         
