@@ -5,6 +5,7 @@
         font-size:28px;
         font-weight:bold;
         color:#4d4000;
+        margin-bottom:0rem;
         position: absolute;   
     }
     .card{
@@ -19,9 +20,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="row d-flex justify-content-center pt-5 "><span class="titleName"><?=$feast['title']?></span></div>
-        <div class="d-flex justify-content-center pt-md-3 mb-5"><img src="<?php echo base_url('assets/images/weddingFeastInfo/4.png');?>"></div>
-
+        
+        
+        <div class="row d-flex justify-content-center pt-5"><span class="titleName"><?=$feast['title']?></span></div>
+        <div class="row d-flex justify-content-center pt-md-3 mb-5 titleFrame"><img src="<?php echo base_url('assets/images/weddingFeastInfo/4.png');?>"></div>
         <div class="card-columns">
             <?php foreach ($feast['img'] as $key => $value) { ?>
                 <div class="card">

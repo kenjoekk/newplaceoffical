@@ -64,6 +64,9 @@ input[type="file"].edit-layout{
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade <?php if($tab!=1){echo "active in";}?>" id="home">
+                  <div class="alert alert-danger">
+                    <strong>注意！！ </strong>影片只会播放排序为1的影片
+                  </div>
                   <table class="table table-striped">
                       <thead>
                           <tr>

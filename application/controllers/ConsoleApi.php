@@ -90,19 +90,76 @@ class ConsoleApi extends CI_Controller {
     $data['english_name'] = $this->input->post('english_name');
     $data['chiness_name'] = $this->input->post('chiness_name');
     $data['sub_title'] = $this->input->post('sub_title');
+    $data['offer'] = $this->input->post('offer');
     $data['money'] = $this->input->post('money');
     $data['table_num'] = $this->input->post('table_num');
     $data['detail'] = $this->input->post('detail');
     $data['schedule'] = $this->input->post('start-schedule')."~".$this->input->post('end-schedule');
-    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    $img_url1 = $_FILES['img_url1']['tmp_name']!=''?$_FILES['img_url1']:'';
+    $img_url2 = $_FILES['img_url2']['tmp_name']!=''?$_FILES['img_url2']:'';
+    $img_url3 = $_FILES['img_url3']['tmp_name']!=''?$_FILES['img_url3']:'';
+    $img_url4 = $_FILES['img_url4']['tmp_name']!=''?$_FILES['img_url4']:'';
+    $img_url5 = $_FILES['img_url5']['tmp_name']!=''?$_FILES['img_url5']:'';
+    $img_url6 = $_FILES['img_url6']['tmp_name']!=''?$_FILES['img_url6']:'';
+    $img_url7 = $_FILES['img_url7']['tmp_name']!=''?$_FILES['img_url7']:'';
+    $img_url8 = $_FILES['img_url8']['tmp_name']!=''?$_FILES['img_url8']:'';
     
     $v_id = $this->venueModel->addVenue($data);
-    if($img_url != ''){
-      $fileType = explode('/',$img_url['type']);
-      $filename = $v_id.'venue.'.$fileType[1];
-      copy($img_url['tmp_name'] , getVenuePath($v_id).$filename);
-      $this->venueModel->editVenue($v_id,array('img_url'=>$filename.'?'.rand()));
+    $img_url = '';
+    if($img_url1 != ''){
+      $fileType = explode('/',$img_url1['type']);
+      $filename = $v_id.'-1-venue.'.$fileType[1];
+      copy($img_url1['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
     }
+    if($img_url2 != ''){
+      $fileType = explode('/',$img_url2['type']);
+      $filename = $v_id.'-2-venue.'.$fileType[1];
+      copy($img_url2['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url3 != ''){
+      $fileType = explode('/',$img_url3['type']);
+      $filename = $v_id.'-3-venue.'.$fileType[1];
+      copy($img_url3['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url4 != ''){
+      $fileType = explode('/',$img_url4['type']);
+      $filename = $v_id.'-4-venue.'.$fileType[1];
+      copy($img_url4['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url5 != ''){
+      $fileType = explode('/',$img_url5['type']);
+      $filename = $v_id.'-5-venue.'.$fileType[1];
+      copy($img_url5['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url6 != ''){
+      $fileType = explode('/',$img_url6['type']);
+      $filename = $v_id.'-6-venue.'.$fileType[1];
+      copy($img_url6['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url7 != ''){
+      $fileType = explode('/',$img_url7['type']);
+      $filename = $v_id.'-1=7-venue.'.$fileType[1];
+      copy($img_url7['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+    if($img_url8 != ''){
+      $fileType = explode('/',$img_url8['type']);
+      $filename = $v_id.'-8-venue.'.$fileType[1];
+      copy($img_url8['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }
+
+    if($img_url!=''){
+      $img_url = rtrim($img_url, ",");
+      $this->venueModel->editVenue($v_id,array('img_url'=>$img_url));
+    }
+    
     redirect('console/venue_list','refresh');
     
   }
@@ -112,18 +169,136 @@ class ConsoleApi extends CI_Controller {
     $data['english_name'] = $this->input->post('english_name');
     $data['chiness_name'] = $this->input->post('chiness_name');
     $data['sub_title'] = $this->input->post('sub_title');
+    $data['offer'] = $this->input->post('offer');
     $data['money'] = $this->input->post('money');
     $data['table_num'] = $this->input->post('table_num');
     $data['detail'] = $this->input->post('detail');
     $data['schedule'] = $this->input->post('start-schedule')."~".$this->input->post('end-schedule');
-    $img_url = $_FILES['img_url']['tmp_name']!=''?$_FILES['img_url']:'';
+    $img_url1 = $_FILES['img_url1']['tmp_name']!=''?$_FILES['img_url1']:'';
+    $img_url2 = $_FILES['img_url2']['tmp_name']!=''?$_FILES['img_url2']:'';
+    $img_url3 = $_FILES['img_url3']['tmp_name']!=''?$_FILES['img_url3']:'';
+    $img_url4 = $_FILES['img_url4']['tmp_name']!=''?$_FILES['img_url4']:'';
+    $img_url5 = $_FILES['img_url5']['tmp_name']!=''?$_FILES['img_url5']:'';
+    $img_url6 = $_FILES['img_url6']['tmp_name']!=''?$_FILES['img_url6']:'';
+    $img_url7 = $_FILES['img_url7']['tmp_name']!=''?$_FILES['img_url7']:'';
+    $img_url8 = $_FILES['img_url8']['tmp_name']!=''?$_FILES['img_url8']:'';
     
-    if($img_url != ''){
-      $fileType = explode('/',$img_url['type']);
-      $filename = $v_id.'venue.'.$fileType[1];
-      copy($img_url['tmp_name'] , getVenuePath($v_id).$filename);
-      // $this->venueModel->editVenue($v_id,array('img_url'=>));
-      $data['img_url'] = $filename.'?'.rand();
+    $img_url = '';
+    if($img_url1 != ''){
+      $fileType = explode('/',$img_url1['type']);
+      $filename = $v_id.'-1-venue.'.$fileType[1];
+      copy($img_url1['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val1 = $this->input->post('img_val1');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val1 != ''){
+        $img_val1 = explode('/',$img_val1);
+        $img_url .= $img_val1[count($img_val1)-1].',';
+      }
+    }
+
+    if($img_url2 != ''){
+      $fileType = explode('/',$img_url2['type']);
+      $filename = $v_id.'-2-venue.'.$fileType[1];
+      copy($img_url2['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val2 = $this->input->post('img_val1');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val2 != ''){
+        $img_val2 = explode('/',$img_val2);
+        $img_url .= $img_val2[count($img_val2)-1].',';
+      }
+    }
+
+    if($img_url3 != ''){
+      $fileType = explode('/',$img_url3['type']);
+      $filename = $v_id.'-3-venue.'.$fileType[1];
+      copy($img_url3['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val3 = $this->input->post('img_val3');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val3 != ''){
+        $img_val3 = explode('/',$img_val3);
+        $img_url .= $img_val3[count($img_val3)-1].',';
+      }
+    }
+
+    if($img_url4 != ''){
+      $fileType = explode('/',$img_url4['type']);
+      $filename = $v_id.'-4-venue.'.$fileType[1];
+      copy($img_url4['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val4 = $this->input->post('img_val4');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val4 != ''){
+        $img_val4 = explode('/',$img_val4);
+        $img_url .= $img_val4[count($img_val4)-1].',';
+      }
+    }
+    if($img_url5 != ''){
+      $fileType = explode('/',$img_url5['type']);
+      $filename = $v_id.'-5-venue.'.$fileType[1];
+      copy($img_url5['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val5 = $this->input->post('img_val5');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val5 != ''){
+        $img_val5 = explode('/',$img_val5);
+        $img_url .= $img_val5[count($img_val5)-1].',';
+      }
+    }
+
+    if($img_url6 != ''){
+      $fileType = explode('/',$img_url6['type']);
+      $filename = $v_id.'-6-venue.'.$fileType[1];
+      copy($img_url6['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val6 = $this->input->post('img_val6');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val6 != ''){
+        $img_val6 = explode('/',$img_val6);
+        $img_url .= $img_val6[count($img_val6)-1].',';
+      }
+    }
+
+    if($img_url7 != ''){
+      $fileType = explode('/',$img_url7['type']);
+      $filename = $v_id.'-7-venue.'.$fileType[1];
+      copy($img_url7['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val7 = $this->input->post('img_val7');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val7 != ''){
+        $img_val7 = explode('/',$img_val7);
+        $img_url .= $img_val7[count($img_val7)-1].',';
+      }
+    }
+
+    if($img_url8 != ''){
+      $fileType = explode('/',$img_url8['type']);
+      $filename = $v_id.'-8-venue.'.$fileType[1];
+      copy($img_url8['tmp_name'] , getVenuePath($v_id).$filename);
+      $img_url.=$filename.'?'.rand().',';
+    }else{
+      $img_val8 = $this->input->post('img_val8');
+      // echo "venue_img2_org: ".$venue_img2_org.'<br>';
+      if($img_val8 != ''){
+        $img_val8 = explode('/',$img_val8);
+        $img_url .= $img_val8[count($img_val8)-1].',';
+      }
+    }
+
+
+    if($img_url!=''){
+      $img_url = rtrim($img_url, ",");
+      $data['img_url'] = $img_url;
     }
     $this->venueModel->editVenue($v_id,$data);
 

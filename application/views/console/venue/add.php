@@ -1,46 +1,12 @@
 <link rel="stylesheet" href="<?=base_url('assets/console/plugins/bootstrap-select/css/bootstrap-select.min.css')?>">
 <style>
-.add-img-block-desc{
-  border: 1px solid #dbdbdb;
-  border-radius:5px;
-  padding: 5px;
-  margin-bottom:20px
+.w-100{
+    width:100%;
 }
-.add-img-block-desc p{
-  text-align:center;
-}
-.add-img-block-desc .type-desc{
-  display:flex;
-}
-.add-img-block-desc .img-block{
-  background:#dbdbdb;
-  margin:5px;
-  flex:1;
-  height:200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.add-img-block-desc .img-border-column .img-block{
-  height:95px;
-  flex:unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.add-img-block-desc .img-block span{
-  font-weight:900;
-  font-size:20px;
-  color:gray;
-}
-
-.add-img-block-desc .img-border-column{
-  
-  /* background:#dbdbdb; */
-  flex:1;
-  display: flex;
-  flex-direction: column;
+.img-input{
+  position:absolute;
+  width: 20%;
+  z-index: -1;
 }
 </style>
 <div class="row clearfix">
@@ -56,13 +22,13 @@
         <div class="row clearfix">
           <form action="<?=base_url('consoleApi/addVenue');?>" method="POST" enctype= multipart/form-data>
             <div class="col-sm-12">
-              <label for="">會館主圖</label>
+              <!-- <label for="">會館主圖</label>
               
               <div class="form-group">
                     <div class="col-sm-12 p-l-0 p-r-0"><img src="" alt="" class="col-xs-8 col-sm-4 p-l-0 p-r-0 img-preview"></div>
                     <input type="hidden" class="img-val">
                     <input type="file" class="form-control img-input" name="img_url" accept="image/*" equired>
-              </div>
+              </div> -->
               <label class="form-label">英文名稱</label>
               <div class="form-group">
                   <div class="form-line">
@@ -81,6 +47,12 @@
                       <input type="text" class="form-control" name="sub_title" required>
                   </div>
               </div>
+              <label class="form-label">优惠</label>
+              <div class="form-group">
+                  <div class="form-line">
+                      <input type="text" class="form-control" name="offer" required>
+                  </div>
+              </div>
               <label class="form-label">婚宴價格 (元起/桌)</label>
               <div class="form-group">
                   <div class="form-line">
@@ -97,6 +69,73 @@
               <div class="form-group">
                   <div class="form-line">
                     <textarea rows="4" class="form-control no-resize" name="detail" required></textarea>
+                  </div>
+              </div>
+              <label class="form-label">轮播图</label>
+              <div class="row">
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第一张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url1" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第二张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url2" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第三张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url3" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第四张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url4" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第五张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url5" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第六张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url6" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第七张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url7" accept="image/*" equired>
+                  </div>
+                  <div class="col-6 col-md-3 add-img-block">
+                    <p class="text-center">第八张</p>
+                    <div class="col-sm-12 p-l-0 p-r-0">
+                        <img src="<?=base_url('assets/console/images/chooseImg.png')?>" alt="" class="img-preview w-100">
+                    </div>
+                    <input type="hidden" class="img-val">
+                    <input type="file" class="form-control img-input" name="img_url8" accept="image/*" equired>
                   </div>
               </div>
               <!-- <label class="form-label">档期开始时间</label>
@@ -163,9 +202,9 @@ $(function(){
     }
   });
 
-  $('.add-img-block').on('click',function(){
-    var type = $('[name="img-type"]').val();
-    console.log(type);
+ 
+  $('.img-preview').on('click',function(){
+    $(this).closest('.add-img-block').find('.img-input').click();
   });
 })
 </script>

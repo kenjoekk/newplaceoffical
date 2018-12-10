@@ -14,6 +14,8 @@
                             <th>姓名</th>
                             <th>电话</th>
                             <th>问题</th>
+                            <th>日期</th>
+                            <th>场馆</th>
                             <th>状态</th>
                             <th>补充</th>
                             <th>操作</th>
@@ -25,6 +27,8 @@
                             <th scope="row"><?=$value['name']?></th>
                             <td><?=$value['phone']?></td>
                             <td style="width:25%"><?=$value['question']?></td>
+                            <td><?=$value['order_date']?></td>
+                            <td><?=$value['venue_name']?></td>
                             <td>
                               <?php 
                                 switch ($value['status']) {

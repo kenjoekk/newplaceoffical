@@ -294,7 +294,7 @@
           <div class="col-md-6 col-lg-4 mb-4" >
             <div class="card">
               <div class="card-img-top-block">
-                <img class="card-img-top" src="<?php echo $value['img_url']?>" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $value['img_url'][0]?>" alt="Card image cap">
                 <div class="hover-img">
                   <!-- <div> -->
                   <a class="btn-go-detail" href="<?=base_url('pages/venue_info/').$value['id'];?>">查看场馆</a>
@@ -542,10 +542,12 @@
           $('#hImg').attr('src','<?php echo base_url('assets/images/homePage/home-p-1-2.png');?>');
           $('.h_t_style2').hide();
           $('.h_t_style1').show();
-                 }else{
+          $('.navbar-brand').find('img').attr('src','<?php echo base_url('assets/images/footer/footerLogo.png');?>');
+         }else{
           $('.h_t_style2').show();
           $('.h_t_style1').hide();
-                 }
+
+        }
                   
       })
     </script>

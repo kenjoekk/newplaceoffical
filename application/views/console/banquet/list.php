@@ -58,11 +58,11 @@
             </div>
             <div class="footer" data-id="<?=$value['id']?>">
               <a class="card-btn btn-remove"><span>删除</span></a>
-              <?php if(count($list)>1 && $key == 0){ ?>
+              <?php if(count($list)>1 && (count($list)-1) != $key){ ?>
                 <!-- 下移 -->
                 <a class="card-btn card-move" data-type="down"><i class="material-icons">chevron_right</i></a>
               <?php } ?>
-              <?php if(count($list)>1 && (count($list)-1) == $key){ ?>
+              <?php if(count($list)>1 && $key>0){ ?>
                 <!-- 上移 -->
                 <a class="card-btn card-move" data-type="up"><i class="material-icons">chevron_left</i></a>
               <?php } ?>

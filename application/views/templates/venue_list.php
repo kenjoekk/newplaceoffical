@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?=base_url('assets/plugin/bootstrap-datepicker/css/bootstrap-datepicker.min.css');?>">
 <style>
     .contentColor{
         color:#666;
@@ -62,6 +63,42 @@
         }
     } 
 
+    .datepicker{
+        box-shadow: 0px 0px 3px 1px RGBA(143, 119, 83, 0.8);
+        border-radius: 0px;
+    }
+    .datepicker table tr td.today{
+        border-radius:0px;
+        background-image:linear-gradient(to bottom,#eacfa7,#efd0a3)
+    }
+    .datepicker table tr td.today:hover{
+        background-image:linear-gradient(to bottom,#eacfa7,#efd0a3)
+    }
+    .datepicker table tr td.active{
+        border-radius:0px;
+        background-image:linear-gradient(to bottom,#927753,#927753);
+    }
+    .datepicker table tr td.active:hover{
+        background-image:linear-gradient(to bottom,#927753,#927753);
+    }
+    .modal-header{
+        border-bottom:unset;
+    }
+    .modal-footer{
+        border-top:unset;
+        justify-content:center;
+    }
+    .table-condensed{
+        width:100%;
+    }
+    .w-220{
+        width:220px;
+    }
+    .modal-dialog{
+        width:280px;
+        margin:40px auto;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -72,7 +109,7 @@
                 <div class="shadow-3 mt-5 page-item <?php if($page==0){echo 'active';}?>" data-page="<?=$page?>">
                     <div class="row ">
                         <div class="col-xl-8">
-                            <img class="w-100 v_list_img_style" src="<?php echo $value['img_url'];?>" alt="123">
+                            <img class="w-100 v_list_img_style" src="<?php echo $value['img_url'][0];?>" alt="123">
                         </div>
                         <div class="col-xl-4 d-flex align-items-center" >
                             <div class="col-12">
@@ -84,7 +121,7 @@
                                 
                                 <div class="d-flex justify-content-center pt-xl-4 pb--xl-4 pb-2 pb-xl-0">
                                     <a class="btn m-2 v_l_text_style">预约看馆</a>
-                                    <a class="btn m-2 v_l_text_style">查看档期</a>
+                                    <a class="btn m-2 v_l_text_style order-btn">查看档期</a>
                                     <a class="btn m-2 v_l_btn_style" href="<?=base_url('pages/venue_info/').$value['id']?>">查看详情</a> 
                                 </div>
                             </div>
@@ -119,8 +156,42 @@
                <a class="btn page-btn" data-active="next">下一頁</a>
         </div>
     </div>
-</body>
 
+    <div class="modal fade in show" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body pt-0 d-flex flex-column align-items-center">
+            <p class="w-220 mb-1">请选择场馆: </p>
+            <select name="" id="order-venue" class="w-220">
+                <option value="">-- 请选择场馆 --</option>
+                <?php foreach ($venue_list as $key => $value) { ?>
+                <option value="<?=$value['chiness_name']?>"><?=$value['chiness_name']?></option>
+                <?php } ?>
+            </select>
+            <p class="w-220 mb-1 mt-4">请选择日期: </p>
+            <div id="datepicker"></div>
+            <p class="w-220 mb-1 mt-4">请输入您的姓名: </p>
+            <input type="text" placeholder="姓名" class="w-220" id="order-name">
+            <p class="w-220 mb-1 mt-4">请输入您的手机号码: </p>
+            <input type="number" placeholder="手机号码" class="w-220" id="order-phone">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-submit-order" style="background:#907656;border-color:#907656">提交</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="<?php echo base_url('assets/console/plugins/momentjs/moment.js')?>"></script>
+  <script src="<?=base_url('assets/plugin/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+  <script src="<?=base_url('assets/plugin/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js')?>"></script>
+  
 <script>
 $(function(){
     
@@ -171,6 +242,51 @@ $(function(){
 		}, 600);
 
     });
+
+    $('.order-btn').on('click',function(){
+            $('#exampleModalLong').modal();
+            
+        });
+        var datepicker = $('#datepicker').datepicker(
+            {
+                format:"YYYY-MM-DD",
+                // defaultDate:new Date(),
+                startDate: "today",
+                language: 'zh-CN',
+                todayHighlight:true,
+                templates:{
+                    leftArrow: '<img src="<?=base_url('assets/images/homePage/arrow_left.png')?>"/>',
+                    rightArrow: '<img src="<?=base_url('assets/images/homePage/arrow_right.png')?>"/>'
+                }
+            }
+        );
+
+        $('.btn-submit-order').on('click',function(){
+            var date = $('#datepicker').datepicker('getDate')!=null?$('#datepicker').datepicker('getDate'):'';
+            var venue = $('#order-venue').val();
+            var phone = $('#order-phone').val();
+            var name = $('#order-name').val();
+            
+            if(venue==''){
+                alert('请选择场馆');
+            }else if(date==''){
+                alert('请选择日期');
+            }else if(name==''){
+                alert('请选择姓名');
+            }else if(phone==''){
+                alert('请选择手机号码');
+            }else{
+                $.post('<?=base_url('pageApi/insert_form')?>',{
+                    date:date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay(),
+                    phone:phone,
+                    name:name,
+                    venue:venue
+                },function(data){
+                    alert('感謝您的來信，我們會在24小時內回覆您。');
+                    location.reload();
+                },'json');
+            }
+        });
 })
 </script>
 

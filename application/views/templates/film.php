@@ -47,7 +47,7 @@
       border-color:#bd9e0c;border-width:1.5px;
       padding: 2px 100px 2px 15px ;
       border-radius: 16px;
-      color:white!important;
+      /* color:white!important; */
     } 
     .textIconStyle{
         background-color:#574800;
@@ -82,11 +82,11 @@
 
     @media(max-width:576px){
       .formNewPalacePic{
-        padding:20px 0px 20px 0px;
+        padding:50px 0px 20px 0px;
       }
       .formNewPalaceBackground{
         background-color:#e2dfd3;
-        margin-top:20px;
+        margin-top:70px;
         padding-bottom:20px;
       }
       .formNewPalaceImg{
@@ -96,6 +96,10 @@
       .f-img-style_c{
         margin-top:2rem;
       } 
+      .formNewPalacePic img{
+        position:absolute;
+        top:-50px;
+      }
     }
     @media(min-width:577px){
       .formNewPalaceImg{
@@ -107,25 +111,20 @@
   </style>
   <body>
     <div class="container-fluid m-0 p-0">
-      <div class="filmBannerStyle"><img src="<?php echo base_url('assets/images/filmArea/banner.png');?>"></div>
+      <div class="filmBannerStyle">
+        <!-- <img src="<?php echo base_url('assets/images/filmArea/banner.png');?>"> -->
+        <video src="<?=$list['video']['path']?>" controls class="w-100"></video>
+      </div>
     </div>
     <div class="container">
-      <?php 
-        $f_w_data[0]['f_w_img']=base_url('assets/images/filmArea/w_1.jpg');
-        $f_w_data[1]['f_w_img']=base_url('assets/images/filmArea/w_2.jpg');
-        $f_w_data[2]['f_w_img']=base_url('assets/images/filmArea/w_3.jpg');
-        $f_w_data[3]['f_w_img']=base_url('assets/images/filmArea/w_4.jpg');
-        $f_w_data[4]['f_w_img']=base_url('assets/images/filmArea/w_5.jpg');
-      ?>
-      
       <div class="row pb-xl-5 pb-4 pt-xl-5 pt-4">
         <div class="swiper-container col-12" >
               <!-- Add Arrows -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
           <div class="swiper-wrapper" >
-            <?php foreach($f_w_data as $f_w_key =>$f_w_value){ ?>
-            <div class="swiper-slide" style="background-color:#eeeeee;"><img src="<?php echo $f_w_value['f_w_img']?>">
+            <?php foreach($list['img'] as $f_w_key =>$f_w_value){ ?>
+            <div class="swiper-slide" style="background-color:#eeeeee;"><img src="<?php echo $f_w_value['path']?>">
             </div>
             <?php }?>     
           </div>   
@@ -142,9 +141,9 @@
           <div class="pt-xl-3 pb-xl-3"><img src="<?php echo base_url('assets/images/filmArea/3.png')?>"></div>
           <div class="form-group">
             <form action="#" method="post">
-              <div style="height:40px"><input type="text" name="userName" placeholder="姓名" class="form-control formStyle form-control-sm"><br></div>
-              <div style="height:40px"><input type="text" name="userPhone" placeholder="联络方式" class="form-control formStyle form-control-sm"><br></div>
-              <div class="pt-xl-3 d-flex justify-content-center p"><input type="submit" value="预约报名" class="textIconStyle"></div>            
+              <div style="height:40px"><input type="text" id="form-name" name="userName" placeholder="请输入您的姓名" class="form-control formStyle form-control-sm"><br></div>
+              <div style="height:40px"><input type="text" id="form-phone" name="userPhone" placeholder="请输入您的手机号" class="form-control formStyle form-control-sm"><br></div>
+              <div class="pt-xl-3 d-flex justify-content-center p"><a onclick="checkSubmit()"  class="textIconStyle">预约报名</a></div>
             </form>
           </div>
           
@@ -192,3 +191,24 @@
        
   
   </body>
+
+  <script>
+    function checkSubmit(){
+        var name = $('#form-name').val();
+        var phone = $('#form-phone').val();
+        if(name== ""){
+            alert('請填寫姓名');
+        }else if(phone == ""){
+            alert('請填寫电话');
+        }else{
+            $.post('<?=base_url('pageApi/insert_form')?>',{
+            name:name,
+            phone:phone
+            },function(data){
+            alert('感謝您的來信，我們會在24小時內回覆您。');
+            location.reload();
+            },'json');
+        }
+    }
+   
+</script>
