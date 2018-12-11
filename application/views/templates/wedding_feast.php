@@ -127,11 +127,8 @@
 <body>
     <div class="container">
         <div class="row d-flex justify-content-center pt-5"><span class="titleName">婚宴报价</span></div>
-<<<<<<< HEAD
-        <div class="row d-flex justify-content-center pt-md-3 mb-lg-5 mb-3 titleFrame"><img src="<?php echo base_url('assets/images/weddingFeast/titleFrame.png')?>"></div>
-=======
         <div class="pt-3 mb-5 titleFrame text-center"><img src="<?php echo base_url('assets/images/weddingFeast/titleFrame.png')?>"></div>
->>>>>>> bb667405d8a8b0af384261d3a8ac2224c448b56c
+
         <?php foreach ($feast as $key => $value) { ?>
             <div class="row feast-item">
                 <div class="col-lg-8 col-12">
