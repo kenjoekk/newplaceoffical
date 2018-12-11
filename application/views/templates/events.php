@@ -56,11 +56,10 @@
         background:#5A4D18;
     }
     @media(max-width:992px){
-        .eventsInfo1{
-          position:static;  
-        }
-        .eventsInfo2{
-          position:static;  
+        .eventsInfo1,.eventsInfo2{
+          position:static;
+          height:unset;
+          padding-bottom:30px;
         }
     }
    
