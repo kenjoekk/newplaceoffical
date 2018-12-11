@@ -18,7 +18,7 @@
                             <th>场馆</th>
                             <th>状态</th>
                             <th>补充</th>
-                            <th>操作</th>
+                            <th>操作</th> 
                         </tr>
                     </thead>
                     <tbody>

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class BanquetModel extends CI_Model {
 
-  function addBanquet($data){
+  function addBanquet($data){ 
     $c = $this->db->count_all_results('banquet');
     $data['sequence'] = $c;
     $data['create_date'] = date('Y-m-d H:i:s');

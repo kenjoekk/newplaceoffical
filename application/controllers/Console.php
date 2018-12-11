@@ -167,7 +167,7 @@ class console extends CI_Controller {
 		$data['page'] = 'console/advisory/list';
 		$data['path'] = 'advisory_list';
 		$data['list'] = $this->advisoryModel->get_list();
-		$this->load->view('console/layout',$data);
+		$this->load->view('console/layout',$data); 
 	}
 
 	

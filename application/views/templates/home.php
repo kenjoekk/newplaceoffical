@@ -404,13 +404,6 @@
     
     <hr class="featurette-divider"> 
 
-  <?php 
-    $b_p_data[0]['b_img']=base_url('assets/images/homePage/bottom01.jpg');
-    $b_p_data[1]['b_img']=base_url('assets/images/homePage/bottom02.jpg');
-    $b_p_data[2]['b_img']=base_url('assets/images/homePage/bottom03.jpg');
-    $b_p_data[3]['b_img']=base_url('assets/images/homePage/bottom04.jpg');
-    $b_p_data[4]['b_img']=base_url('assets/images/homePage/bottom05.jpg');
-  ?>
   <div class="container">
     <div class="swiper-title-top">
       <p>婚禮實錄</p>
@@ -433,7 +426,41 @@
     </div>
   </div>
     
+  <div class="modal fade in show" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body pt-0 d-flex flex-column align-items-center">
+              <!-- <p class="w-220 mb-1 mt-4">请输入您的姓名: </p>
+              <input type="text" placeholder="姓名" class="w-220" id="order-name">
+              <p class="w-220 mb-1 mt-4">请输入您的手机号码: </p>
+              <input type="number" placeholder="手机号码" class="w-220" id="order-phone">
+                -->
+              <div class="col-12 d-flex justify-content-center pt-4" style="color:#996600;font-size:25px;font-weight:bold;">立即报名</div>
+              
+              <div class="form-row d-flex justify-content-center">
+                  <div class="col-10 form-group mt-4" >
+                      <input type="text" class="form-control" id="order-name" placeholder="请输入您的姓名" style="border-radius:15px;background-color:white;">
+                  </div>
+                  <div class="col-10 form-group mt-2">
+                      <input type="tel" class="form-control" id="order-phone" placeholder="请输入您的手机" style="border-radius:15px;background-color:white;">
+                  </div>
 
+              </div>
+                                        
+                      
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary btn-submit-order" style="background:#907656;border-color:#907656">提交</button>
+          </div>
+          </div>
+      </div>
+  </div>
  
 
 <script type="text/javascript">
@@ -548,6 +575,27 @@
           $('.h_t_style1').hide();
 
         }
+        $('.btn-order').on('click',function(){
+          $('#exampleModalLong').modal();
+        });
+        $('.btn-submit-order').on('click',function(){
+            var phone = $('#order-phone').val();
+            var name = $('#order-name').val();
+            
+            if(name==''){
+                alert('请选择姓名');
+            }else if(phone==''){
+                alert('请选择手机号码');
+            }else{
+                $.post('<?=base_url('pageApi/insert_form')?>',{
+                    phone:phone,
+                    name:name
+                },function(data){
+                    alert('感謝您的來信，我們會在24小時內回覆您。');
+                    location.reload();
+                },'json');
+            }
+        });
                   
       })
     </script>
