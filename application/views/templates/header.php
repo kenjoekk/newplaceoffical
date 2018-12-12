@@ -129,10 +129,21 @@
   .nav-link p{
     margin-bottom:0rem;
     font-size:16px;
+    position:relative;
+    transition:top .3s ease 0s;
+    top:0px;
+    /* bottom:0px; */
   }
   .nav-link p:nth-child(2){
     font-size:12px;
   }
+  .nav-link:hover p:nth-child(1){
+    top:20px;
+  }
+  .nav-link:hover p:nth-child(2){
+    top:-20px;
+  }
+  
   .navbar-brand{
     margin-right:0;
     width:80px;
@@ -219,6 +230,12 @@
     }
     #homeTitlePic img{
       margin-top:64px;
+    }
+    .nav-link:hover p:nth-child(1){
+      top:0px;
+    }
+    .nav-link:hover p:nth-child(2){
+      top:0px;
     }
   }
 

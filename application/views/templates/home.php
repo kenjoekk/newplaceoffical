@@ -84,6 +84,8 @@
       background-repeat: no-repeat;
       background-position-x: center;
       margin-bottom:3rem;
+      font-size:1.25rem;
+      background-size: 250px;
     }
     .pt-6{
       padding-top: 6rem!important;
@@ -230,6 +232,15 @@
     .h_img_info{
       padding-top:96px;
     }
+    .hidden-mobile-f{
+      display:flex;
+    }  
+    .hidden-mobile{
+      display:black;
+    }  
+    .show-mobile{
+      display:none;
+    }
     @media(max-width:767px){
       .carousel-block{
         padding: 6% 7.2%;
@@ -256,11 +267,38 @@
         background-repeat: no-repeat;
         background-position-x: center;
         margin-bottom:2rem;
+        background-position-y: 12px;
       }
       .h_center_banner_text_style{
       font-size:14px;letter-spacing:2px;text-align:left;
       }
+      .hidden-mobile,.hidden-mobile-f{
+        display:none;
+      }  
+      .show-mobile{
+        display:block;
+      }
     }
+
+    .swiper-venue{
+      position:relative;
+      width:100%;
+      overflow:hidden;
+    }
+
+    .swiper-button-next{
+        background-image:url('../assets/images/homePage/next.png');
+        width:35px;
+        height:35px;
+        background-size: 100%;
+    }
+    .swiper-button-prev{
+      background-image:url('../assets/images/homePage/prev.png');
+      width:35px;
+      height:35px;
+      background-size: 100%;
+    }  
+    
 </style>
      <body>
 
@@ -268,7 +306,7 @@
         <img id="hImg" src="<?=base_url('assets/images/homePage/home-p-1.png');?>" alt="">
         </div>
       <!-- 手机画面   -->
-      <div class="container pt-xl-5 h_img_info h_t_style1">
+      <div class="container h_img_info h_t_style1">
         <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h3>
         <p class="detail content-color h_text_info">
           采取当今新型婚礼服务模式(一站式婚礼会所)，
@@ -279,7 +317,7 @@
         <hr class="my-hr">
       </div>
       <!-- pc画面 -->
-      <div class="container pt-xl-5 pt-5 h_img_info h_t_style2">
+      <div class="container h_img_info h_t_style2">
         <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h3>
         <p class="detail content-color h_text_info">
           采取当今新型婚礼服务模式(一站式婚礼会所)，提供以下服务：婚宴场地、婚宴饮食、婚庆策划、婚纱摄影、微电影制作、喜糖、喜酒等我们的特点：省心、省力、高效率、高品质！
@@ -290,7 +328,7 @@
   
     <div class="container">
       <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">婚宴場館</h2>
-      <div class="row">
+      <div class="row hidden-mobile-f">
         <?php foreach ($venue as $key => $value) { ?>
           <div class="col-md-6 col-lg-4 mb-4" >
             <div class="card">
@@ -314,9 +352,34 @@
           </div>    
         <?php } ?>
       </div>
+      <div class="row show-mobile">
+        <div class="col-12" >
+          <div class="card">
+            <div class="swiper-venue gallery-top">
+              <div class="swiper-wrapper">
+                  <?php foreach ($venue as $key => $value) { ?>
+                      <div class="swiper-slide" data-name="<?=$value['chiness_name']?>" data-subname='<?=$value['sub_title']?>'>
+                          <img src="<?=$value['img_url'][0]?>" alt="">
+                      </div>
+                  <?php } ?>
+              </div>
+              <div class="swiper-button-next venue-swiper-button-next"></div>
+              <div class="swiper-button-prev venue-swiper-button-prev"></div>
+            </div>
+            <div class="card-body d-flex flex-column align-items-center venue-card-body">
+                <h5 class="card-title title-font-style"><?=$venue[0]['chiness_name']?></h5>
+                <div class="title-b-line"></div>
+                <p class="content-color"><?=$venue[0]['sub_title']?></p>
+                <div>
+                  <a class="btn-order">立即预约</a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div style="padding-top:50px">
+    <div style="padding-top:50px" class="hidden-mobile">
       <div class="text-center btn-more-div" style="background-image:url('<?php echo base_url('assets/images/homePage/more-bg.png')?>')">
         <a class="title-font-style" style="font-size:1.75rem;font-weight:500" href="<?=base_url('pages/venue_list');?>">更多场馆</a>
       </div>
@@ -327,13 +390,15 @@
     <div class="homeMidPic" style="text-align:center;background-image:url('<?php echo base_url('assets/images/homePage/home-p-2.png')?>')">
       <!-- 手机画面 -->
       <div class="h_t_style1">
-        <div class="row justify-content-center flex-column p-3">
-          <span class="pb-3"><h3>魔都最好吃的婚宴料理</h3></span>
-          <span class="pt-4 h_center_banner_text_style" >从食材的采购、挑选、清洗到颜色的搭</span>
-          <span class="pt-2 h_center_banner_text_style">配、烹饪的火侯花式的摆盘.....特聘顶级</span>
-          <span class="pt-2 h_center_banner_text_style">厨师严格把控每场料理的一分一毫，给予</span>
-          <span class="pt-2 h_center_banner_text_style">参加婚宴的宾客最极致的味蕾体验！最幸</span>
-          <span class="pt-2 h_center_banner_text_style">福的时刻我们用美味与之相伴</span>
+        <div class="row justify-content-center flex-column align-items-center p-3">
+          <span class="pb-3"><h3 style="letter-spacing: 5px;">魔都最好吃的婚宴料理</h3></span>
+          <div class="d-flex flex-column">
+            <span class="pt-4 h_center_banner_text_style" >从食材的采购、挑选、清洗到颜色的搭</span>
+            <span class="pt-2 h_center_banner_text_style">配、烹饪的火侯花式的摆盘.....特聘顶级</span>
+            <span class="pt-2 h_center_banner_text_style">厨师严格把控每场料理的一分一毫，给予</span>
+            <span class="pt-2 h_center_banner_text_style">参加婚宴的宾客最极致的味蕾体验！最幸</span>
+            <span class="pt-2 h_center_banner_text_style">福的时刻我们用美味与之相伴</span>
+          </div>
           <div>
             <a class="btn btn-outline-light mt-5" href="<?=base_url('pages/wedding_feast');?>">了解更多</a>
           </div>
@@ -559,6 +624,33 @@
       },
     });
 
+    var galleryTop = new Swiper('.swiper-venue', {
+        spaceBetween: 10,
+        loopedSlides: 5, //looped slides should be the same
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        on:{
+          slideChange:function(){
+            console.log($(this));
+          }
+        }
+    });
+
+    $('.venue-swiper-button-next,.venue-swiper-button-prev').on('click',function(){
+      console.log($('.swiper-venue .swiper-slide-active'));
+      var name = $('.swiper-venue .swiper-slide-active').data('name');
+      var subname = $('.swiper-venue .swiper-slide-active').data('subname');
+      console.log(name);
+      console.log(subname);
+      $('.venue-card-body').fadeIn('normal',function(){
+        $('.venue-card-body').fadeOut('normal',function(){
+          $('.venue-card-body').find('.card-title').html(name);
+          $('.venue-card-body').find('.content-color').html(subname);
+        });
+      });
+    });
     
     
   </script>
