@@ -10,7 +10,8 @@
         
     }
     .reservationBox{
-        width:600px;
+        width:90%;
+        max-width:600px;
         height:291px;
         background:rgba(255,255,255,0.6);
         margin-top:15%;

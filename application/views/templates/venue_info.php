@@ -26,7 +26,7 @@
       max-width: 750px;
     }
     .gallery-thumbs {
-      height: 120px;
+      /* height: 120px; */
       box-sizing: border-box;
       padding: 10px 0 5px 0;
 
@@ -103,7 +103,7 @@
     .level{
         z-index:2;
         max-width:750px;
-        /* margin-top:-24px; */
+        margin:auto;
     }
     .infoStyle{
         color:white;
@@ -150,13 +150,7 @@
       height:35px;
       background-size: 100%;
     }    
-    @media(max-width:768px){
-        .titleName{
-            font-size:16px;
-            font-weight:bold;
-        }
-    }
-
+    
     .type-desc{
         display:flex;
     }
@@ -252,6 +246,22 @@
         width:280px;
         margin:40px auto;
     }
+
+    @media(max-width:768px){
+        .titleName{
+            font-size:16px;
+            font-weight:bold;
+        }
+    }
+    @media(max-width:992px){
+        .titleName{
+            font-size:16px;
+            font-weight:bold;
+        }
+        .detailStyle{
+            background-color:#ece9df;
+        }
+    }
     
   </style>
 <body>
@@ -262,9 +272,11 @@
             <div style="background-color:#fff" >
                 <div class="swiper-container gallery-top">
                     
-                        <div class="swiper-wrapper" style="height:450px">
+                        <div class="swiper-wrapper">
                             <?php foreach ($venue['img_url'] as $key => $value) { ?>
-                                <div class="swiper-slide" style="height:100%;background-image:url(<?=$value?>)"></div>
+                                <div class="swiper-slide">
+                                    <img src="<?=$value?>" alt="">
+                                </div>
                             <?php } ?>
                         </div>
                     
@@ -275,7 +287,9 @@
                 <div class="swiper-container gallery-thumbs">
                     <div class="swiper-wrapper" >
                         <?php foreach ($venue['img_url'] as $key => $value) { ?>
-                            <div class="swiper-slide" style="background-image:url(<?=$value?>)" data-img="<?=$value?>"></div>    
+                            <div class="swiper-slide">
+                                <img src="<?=$value?>" alt="" data-img="<?=$value?>">
+                            </div>    
                         <?php } ?>
                     </div>
                 </div>    
@@ -294,9 +308,11 @@
           </div>
         </div>
         <!-- 场馆介绍 -->
-        <div class="row d-flex justify-content-center pt-xl-3 pt-3"><span class="titleName">场馆详情</span></div>
-        <div class="text-center"><img id="spLine" src="<?php echo base_url('assets/images/venue/1.png');?>"></div>
-        <div class="row image-detail">
+        <div class="row d-flex justify-content-center pt-xl-3 pt-3 detailStyle"><span class="titleName">场馆详情</span></div>
+        <div class="text-center detailStyle row justify-content-center">
+            <div style="width:90%"><img id="spLine" src="<?php echo base_url('assets/images/venue/1.png');?>"></div>
+        </div>
+        <div class="row image-detail detailStyle">
             <?php foreach ($venue['venue_img'] as $key => $value) {
                 switch ($value['type']) {
                     case '1': ?>

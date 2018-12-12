@@ -8,31 +8,40 @@
         font-size:16px;
     
     }
-    .eventsInfo1{
+    .eventsInfo1,.eventsInfo2{
         background-color:#fafafa;
-        height:440px;
+        height:450px;
         width:500px;
         position:absolute;
+        top:calc(50% - 225px);
+        padding:40px;
+    }
+    .eventsInfo1{
         right:1%;
-        top:20%;
     }
     .eventsInfo2{
-        background-color:#fafafa;
-        height:440px;
-        width:500px;
-        position:absolute;
         left:1%;
-        top:20%;
     }
 
     .eventsInfoTitle{
         color:#4d4000;
-        font-size:24px;
+        font-size:20px;
         font-weight:bold;
     }
     .eventsInfoSubtitle{
         color:#daceb6;
         font-weight:bold;
+    }
+    .order-btn{
+        display:flex;
+        justify-content:center;
+        position:absolute;
+        width:calc(100% - 60px); 
+        bottom:30px;
+    }
+    .nums-item{
+        position:absolute;
+        bottom:110px;
     }
     .wb-all{
         word-break:break-all;
@@ -56,11 +65,23 @@
         background:#5A4D18;
     }
     @media(max-width:992px){
-        .eventsInfo1{
-          position:static;  
+        .eventsInfo1,.eventsInfo2{
+          position:static;
+          height:unset;
+          padding-bottom:30px;
         }
-        .eventsInfo2{
-          position:static;  
+        .order-btn{
+            position:unset;
+            width:100%;
+        }
+        .nums-item{
+            position:unset;
+            bottom:100px;
+            margin-bottom:3rem;
+        }
+        .buttonIconStyleEvents{
+            border-radius:100px;
+            background:#5B4F01;
         }
     }
    
@@ -72,6 +93,7 @@
     <!-- info  -->
     <?php foreach($news as $key => $value){ ?>
         <div class="row pt-5 event-item" data-type="<?=$value['type']?>" data-active="<?=$value['active_url']?>" style="position: relative">
+<<<<<<< HEAD
             <div class="col-12 p-0 <?php if($key%2==1){echo 'd-flex justify-content-end';}else{echo '';}?>"><img class="doActive" src="<?php echo $value['img_url']?>"></div>
             <div class="col-12 shadow-5 <?php if($key%2==1){echo 'eventsInfo2';}else{echo 'eventsInfo1';}?>">
                 <div class="row">                
@@ -85,6 +107,23 @@
                   ?></span>天</div>
                     <div class="col-12 pt-1 pl-5"><img src="<?php echo base_url('assets/images/events/5.png');?>"><span class="pl-3">已参与数：</span><span style="color:#996600;"><?php echo $value['order_num']?></span>人</div>
                     <div class="col-12 d-flex justify-content-center mt-3"><span class="buttonIconStyleEvents doActive btn">立即报名</span></div> 
+=======
+            <div class="col-12 p-0 <?php if($key%2==1){echo 'd-lg-flex justify-content-lg-end';}else{echo '';}?>" style="position:relative">
+                <img class="doActive" src="<?php echo $value['img_url']?>">
+                <div class="col-12 shadow-5 d-flex flex-column <?php if($key%2==1){echo 'eventsInfo2';}else{echo 'eventsInfo1';}?>">
+                    <span class="eventsInfoTitle mt-2"><?php echo $value['title']?></span>
+                    <span class="eventsInfoSubtitle mb-3"><?php echo $value['sub_title']?></span>
+                    <span class="wb-all mb-5"><?php echo $value['detail']?></span>
+                    <div class="nums-item">
+                        <div><img src="<?php echo base_url('assets/images/events/3.png');?>"><span class="pl-3">人气指数：</span><span style="color:#996600;"><?php echo $value['hot_num']?></span></div>
+                        <div><img src="<?php echo base_url('assets/images/events/4.png');?>"><span class="pl-3">剩馀时间：</span><span style="color:#996600;"><?php 
+                        $today = date("Y-m-d");
+                        echo (strtotime($value['active_time']) - strtotime($today))/3600/24;
+                        ?></span>天</div>
+                        <div><img src="<?php echo base_url('assets/images/events/5.png');?>"><span class="pl-3">已参与数：</span><span style="color:#996600;"><?php echo $value['order_num']?></span>人</div>
+                    </div>
+                    <div class="order-btn mt-3"><span class="buttonIconStyleEvents doActive btn">立即报名></span></div> 
+>>>>>>> 649d8066ec7df9f45c68d5422e1406e485759679
                 </div>
             </div>
         </div>
