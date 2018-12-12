@@ -78,7 +78,7 @@
   body {
       background: #fff;
       font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       color:#000;
       margin: 0;
       padding: 0;

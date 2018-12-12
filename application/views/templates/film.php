@@ -136,9 +136,9 @@
         
         <div class="col-lg-4 col-md-4  formNewPalaceBackground">
           <div class="d-flex justify-content-center formNewPalacePic"><img class="formNewPalaceImg" class="mb-lg-3 mb-md-3 mb-sm-3 mb-xs-3" src="<?php echo base_url('assets/images/filmArea/2.png')?>"></div>
-          <!-- <div class="pt-xl-3" style="text-align: center;"><span style="color:#bd9e0c;font-size:14px;">雅悦新天地是一家集婚宴场地、婚宴饮食、婚庆策划、</span></div>
-          <div class="pt-xl-2" style="text-align: center;"><span style="color:#bd9e0c;font-size:14px;">婚纱摄影、微电影制作、喜糖喜酒等服务的一站式婚宴会所。</span></div> -->
-          <div class="pt-xl-3 pb-xl-3"><img src="<?php echo base_url('assets/images/filmArea/3.png')?>"></div>
+          <div class="pt-xl-3 mb-2 mb-md-0" style="text-align: center;"><span style="color:#564802;font-size:14px;">雅悦新天地是一家集婚宴场地、婚宴饮食、婚庆策划、</span></div>
+          <div class="pt-xl-2 mb-4 mb-md-0" style="text-align: center;"><span style="color:#564802;font-size:14px;">婚纱摄影、微电影制作、喜糖喜酒等服务的一站式婚宴会所。</span></div>
+          <div class="pt-xl-3 pb-xl-3 mb-4 mb-md-0 d-flex justify-content-center"><img style="width:90%" src="<?php echo base_url('assets/images/filmArea/3.png')?>"></div>
           <div class="form-group">
             <form action="#" method="post">
               <div style="height:40px"><input type="text" id="form-name" name="userName" placeholder="请输入您的姓名" class="form-control formStyle form-control-sm"><br></div>
