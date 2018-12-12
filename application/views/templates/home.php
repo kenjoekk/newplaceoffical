@@ -132,7 +132,7 @@
       background:white;
     }
     .btn-order{
-      border:1px solid #5A4D18;
+      border:2px solid #5A4D18;
       color:#5A4D18 !important;
       padding:3px 30px;
     }
@@ -227,6 +227,9 @@
     .h_center_banner_text_style{
       font-size:16px;font-weight:lighter;
     }
+    .h_img_info{
+      padding-top:96px;
+    }
     @media(max-width:767px){
       .carousel-block{
         padding: 6% 7.2%;
@@ -237,9 +240,7 @@
       .order-card{
         padding-bottom:30px;
       }
-      .h_img_info{
-        background-color:#f4f1df;
-      }
+      
       .h_text_info{
         text-align:center;
       }
@@ -267,7 +268,7 @@
         <img id="hImg" src="<?=base_url('assets/images/homePage/home-p-1.png');?>" alt="">
         </div>
       <!-- 手机画面   -->
-      <div class="container pt-xl-5 pt-5 h_img_info h_t_style1">
+      <div class="container pt-xl-5 h_img_info h_t_style1">
         <h3 class="text-center title-with-top-img title-font-style" style="background-image:url('<?=base_url('assets/images/homePage/title-top-img.png');?>')">我們的服務</h3>
         <p class="detail content-color h_text_info">
           采取当今新型婚礼服务模式(一站式婚礼会所)，

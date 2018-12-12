@@ -96,11 +96,12 @@
   }
   
    a.navbar-brand{
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff !important;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 0; }     
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff !important;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0; 
+  }     
 
   .headerColor{
     color:#fff !important;
@@ -119,6 +120,9 @@
     right: 0px;
     /* border-right: 1px solid white; */
   }
+  .nav-item:nth-child(1):after{
+    height: 0px;
+  }
   .nav-item:nth-last-child(1):after{
     height: 0px;
   }
@@ -132,6 +136,7 @@
   .navbar-brand{
     margin-right:0;
     width:80px;
+    display:none;
   }
   .absolute-nav{
     position:absolute;
@@ -164,8 +169,12 @@
   @media(max-width:991px){
     .navbar-brand{
       margin-right:0;
-      width:50px;
+      width:50%;
+      display:block;
     } 
+    .nav-item:nth-child(1){
+      display:none;
+    }
   }
   @media(max-width:768px){
     .navbar-brand{
@@ -205,14 +214,20 @@
       font-size:12px;
       color:white !important;
     }
+    #nav-title-img img{
+      
+    }
+    #homeTitlePic img{
+      margin-top:64px;
+    }
   }
 
 </style>
 <section>
   <div class="container-fluid <?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo 'absolute-nav';}else{echo 'normal-nav';}?>">
-    <div class="container">
+    <div class="">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-trans">
-        <a class="navbar-brand" href="<?=base_url('pages/home');?>"><img src="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo base_url('assets/images/homePage/icon.png');}else{echo base_url('assets/images/homePage/icon-black.png');}?>" alt="" style="display:none"></a>
+        <a class="navbar-brand" href="<?=base_url('pages/home');?>"><img src="" alt=""></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -220,8 +235,13 @@
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav m-auto">
             <li class="nav-item active">
+              <a class="nav-link headerColor" id="nav-title-img" href="<?=base_url('pages/home');?>" lang='1' >
+                <img style="width: 60px;margin: auto;" src="<?php if(isset($homeHeaderBackground)&&$homeHeaderBackground){echo base_url('assets/images/homePage/icon.png');}else{echo base_url('assets/images/homePage/icon-black.png');}?>" alt="" style="display:none">
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link headerColor" id="homeId" href="<?=base_url('pages/home');?>" lang='1' >
                 <p><?php echo $lang['home'];?></p>
                 <p>INDEX</p>
@@ -303,10 +323,10 @@
       $(function(){
           var w = $(window).width();
           var h = $(window).height();
-        if(w<768){
+        if(w<992){
           $('.navbar-brand').find('img').attr('src','<?php echo base_url('assets/images/footer/footerLogo.png');?>');
         }
-        $('.navbar-brand').find('img').css('display','block');
+        $('#nav-title-img').find('img').css('display','block');
                   
       })
     </script>
