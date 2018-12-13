@@ -28,7 +28,7 @@ class pages extends CI_Controller {
 		$data['lang'] = $lang;
 		$data['homeHeaderBackground'] = $homeHeaderBackground;
 		
-		$data['venue'] = $this->venueModel->get_venue_list();
+		$data['venue_list'] = $this->venueModel->get_venue_list();
 		$data['news'] = $this->newsModel->getNewsList();
 		$data['case'] = $this->videoModel->getSwiper();
 
@@ -62,7 +62,6 @@ class pages extends CI_Controller {
 		$this->load->model('venueModel');
 		// $data['page'] = $pagination;
 		$data['lang']=$lang;
-		$data['venue'] = $this->venueModel->get_venue_list();
 		$data['venue_list'] = $this->venueModel->get_venue_list();
 		// $config = $this->setPLink("/page/goEcho",300);
 		// echo $this->pagination->create_links();

@@ -64,6 +64,13 @@
         border-color:unset;
         background:#5A4D18;
     }
+    .event-detail{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+        overflow: hidden;
+
+    }
     @media(max-width:992px){
         .eventsInfo1,.eventsInfo2{
           position:static;
@@ -98,7 +105,7 @@
                 <div class="col-12 shadow-5 d-flex flex-column <?php if($key%2==1){echo 'eventsInfo2';}else{echo 'eventsInfo1';}?>">
                     <span class="eventsInfoTitle mt-2"><?php echo $value['title']?></span>
                     <span class="eventsInfoSubtitle mb-3"><?php echo $value['sub_title']?></span>
-                    <span class="wb-all mb-5"><?php echo $value['detail']?></span>
+                    <span class="wb-all mb-5 event-detail"><?php echo $value['detail']?></span>
                     <div class="nums-item">
                         <div><img src="<?php echo base_url('assets/images/events/3.png');?>"><span class="pl-3">人气指数：</span><span style="color:#996600;"><?php echo $value['hot_num']?></span></div>
                         <div><img src="<?php echo base_url('assets/images/events/4.png');?>"><span class="pl-3">剩馀时间：</span><span style="color:#996600;"><?php 
