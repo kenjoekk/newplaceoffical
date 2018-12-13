@@ -134,7 +134,7 @@
         margin-top:3.5rem;
     }
     .titleName{
-        font-size:28px;
+        font-size: 1.25rem;
         font-weight:bold;
         color:#4d4000;
         }
@@ -262,7 +262,27 @@
             background-color:#ece9df;
         }
     }
-    
+    /* ------------reservation modal css start----------- */
+    #reservationModal .modal-dialog{
+      border-radius: 15px;
+      width:300px;
+      height:420px;
+      margin:40px auto;
+    }
+    #reservationModal .modal-content{
+      background-image:url("<?=base_url('assets/images/modal/bg.png');?>");
+      background-size: 100%;
+      border-radius: 15px;
+      width:300px;
+      height:420px;
+    }
+    #reservationModal .close{
+      position:absolute;
+      width:40px;
+      left:calc(50% - 20px);
+      bottom:-60px;
+    }
+    /* ------------reservation modal end----------- */
   </style>
 <body>
     <div class="container pt-xl-5">
@@ -304,7 +324,7 @@
               <p class="pb-2"><span style="font-size:15px;"> 婚宴价格：</span> <span><?=$venue['money']?>元起/桌</span></p>  
               <p class="pb-2"><span style="font-size:15px;"> 容纳桌数：</span> <span><?=$venue['table_num']?>桌</span></p>  
               <p><span style="font-size:15px;"> 场馆优势：</span> <span><?=$venue['detail']?></span></p> 
-              <div class="pt-3 pb-2 row "><div class="col-6 d-flex justify-content-center"><span class="btn textIconStyleB">立即预约</span></div><div class="col-6 d-flex justify-content-center"><span class="btn textIconStyleB order-btn">查看档期</span></div></div>  
+              <div class="pt-3 pb-2 row "><div class="col-6 d-flex justify-content-center"><span class="btn textIconStyleB reservation-btn">立即预约</span></div><div class="col-6 d-flex justify-content-center"><span class="btn textIconStyleB order-btn">查看档期</span></div></div>  
           </div>
         </div>
         <!-- 场馆介绍 -->
@@ -390,6 +410,29 @@
     </div>
   </div>
 </div>
+
+<!-- reservation modal start -->
+<div class="modal fade in show" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body pt-0 d-flex flex-column align-items-center justify-content-center">
+                <div class="d-flex flex-column p-2">
+                <div>
+                    <img src="<?=base_url('assets/images/modal/title.png')?>" alt="">
+                </div>
+                <input type="text" class="form-control mt-4" id="reservation-name" placeholder="请输入您的姓名" style="border-radius:10px;background-color:rgba(255,255,255,0.5);border-color: rgba(255,255,255,0.5);">
+                <input type="tel" class="form-control mt-3" id="reservation-phone" placeholder="请输入您的手机" style="border-radius:10px;background-color:rgba(255,255,255,0.5);border-color: rgba(255,255,255,0.5);">
+                <div class="text-center mt-3">
+                    <img src="<?=base_url('assets/images/modal/submit.png')?>" alt="" style="width:80%" class="btn-submit-reservation">
+                </div>
+                <img src="<?=base_url('assets/images/modal/cancel.png')?>" alt="" class="close" data-dismiss="modal" aria-label="Close">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- reservation modal end -->
+
     
 
   <!-- Initialize Swiper -->
@@ -437,7 +480,9 @@
 
         $('.order-btn').on('click',function(){
             $('#exampleModalLong').modal();
-            
+        });
+        $('.reservation-btn').on('click',function(){
+            $('#reservationModal').modal();
         });
         var datepicker = $('#datepicker').datepicker(
             {
@@ -473,6 +518,25 @@
                     phone:phone,
                     name:name,
                     venue:venue
+                },function(data){
+                    alert('感謝您的來信，我們會在24小時內回覆您。');
+                    location.reload();
+                },'json');
+            }
+        });
+
+        $('.btn-submit-reservation').on('click',function(){
+            var phone = $('#reservation-phone').val();
+            var name = $('#reservation-name').val();
+            
+            if(name==''){
+                alert('请輸入姓名');
+            }else if(phone==''){
+                alert('请輸入手机号码');
+            }else{
+                $.post('<?=base_url('pageApi/insert_form')?>',{
+                    phone:phone,
+                    name:name
                 },function(data){
                     alert('感謝您的來信，我們會在24小時內回覆您。');
                     location.reload();

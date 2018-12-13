@@ -2,7 +2,7 @@
 <head>
   <style>
     .titleName{
-        font-size:21px;
+        font-size: 1.25rem;
         font-weight:bold;
         color:#4d4000;
         }

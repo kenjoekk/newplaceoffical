@@ -62,43 +62,65 @@
             color:white !important;
         }
     } 
-
-    .datepicker{
+    /* ------------order modal css start----------- */
+    #exampleModalLong .datepicker{
         box-shadow: 0px 0px 3px 1px RGBA(143, 119, 83, 0.8);
         border-radius: 0px;
     }
-    .datepicker table tr td.today{
+    #exampleModalLong .datepicker table tr td.today{
         border-radius:0px;
         background-image:linear-gradient(to bottom,#eacfa7,#efd0a3)
     }
-    .datepicker table tr td.today:hover{
+    #exampleModalLong .datepicker table tr td.today:hover{
         background-image:linear-gradient(to bottom,#eacfa7,#efd0a3)
     }
-    .datepicker table tr td.active{
+    #exampleModalLong .datepicker table tr td.active{
         border-radius:0px;
         background-image:linear-gradient(to bottom,#927753,#927753);
     }
-    .datepicker table tr td.active:hover{
+    #exampleModalLong .datepicker table tr td.active:hover{
         background-image:linear-gradient(to bottom,#927753,#927753);
     }
-    .modal-header{
+    #exampleModalLong .modal-header{
         border-bottom:unset;
     }
-    .modal-footer{
+    #exampleModalLong .modal-footer{
         border-top:unset;
         justify-content:center;
     }
-    .table-condensed{
+    #exampleModalLong .table-condensed{
         width:100%;
     }
-    .w-220{
+    #exampleModalLong .w-220{
         width:220px;
     }
-    .modal-dialog{
+    #exampleModalLong .modal-dialog{
         width:280px;
         margin:40px auto;
     }
-
+    /* ------------order modal css end----------- */
+    /* ------------reservation modal css start----------- */
+    #reservationModal .modal-dialog{
+      border-radius: 15px;
+      width:300px;
+      height:420px;
+      margin:40px auto;
+    }
+    #reservationModal .modal-content{
+      background-image:url("<?=base_url('assets/images/modal/bg.png');?>");
+      background-size: 100%;
+      border-radius: 15px;
+      width:300px;
+      height:420px;
+    }
+    #reservationModal .close{
+      position:absolute;
+      width:40px;
+      left:calc(50% - 20px);
+      bottom:-60px;
+    }
+    /* ------------reservation modal end----------- */
+    
 </style>
 <body>
     <div class="container">
@@ -120,7 +142,7 @@
                                 <div class="col pt-3 v_l_text_style"><p  class="contentColor wb-all">场馆优势：<?=$value['detail']?></p></div>
                                 
                                 <div class="d-flex justify-content-center pt-xl-4 pb--xl-4 pb-2 pb-xl-0">
-                                    <a class="btn m-2 v_l_text_style">预约看馆</a>
+                                    <a class="btn m-2 v_l_text_style reservation-btn">预约看馆</a>
                                     <a class="btn m-2 v_l_text_style order-btn">查看档期</a>
                                     <a class="btn m-2 v_l_btn_style" href="<?=base_url('pages/venue_info/').$value['id']?>">查看详情</a> 
                                 </div>
@@ -156,37 +178,59 @@
                <a class="btn page-btn" data-active="next">下一頁</a>
         </div>
     </div>
-
+    <!-- order modal start -->
     <div class="modal fade in show" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body pt-0 d-flex flex-column align-items-center">
-            <p class="w-220 mb-1">请选择场馆: </p>
-            <select name="" id="order-venue" class="w-220">
-                <option value="">-- 请选择场馆 --</option>
-                <?php foreach ($venue_list as $key => $value) { ?>
-                <option value="<?=$value['chiness_name']?>"><?=$value['chiness_name']?></option>
-                <?php } ?>
-            </select>
-            <p class="w-220 mb-1 mt-4">请选择日期: </p>
-            <div id="datepicker"></div>
-            <p class="w-220 mb-1 mt-4">请输入您的姓名: </p>
-            <input type="text" placeholder="姓名" class="w-220" id="order-name">
-            <p class="w-220 mb-1 mt-4">请输入您的手机号码: </p>
-            <input type="number" placeholder="手机号码" class="w-220" id="order-phone">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-submit-order" style="background:#907656;border-color:#907656">提交</button>
-        </div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pt-0 d-flex flex-column align-items-center">
+                <p class="w-220 mb-1">请选择场馆: </p>
+                <select name="" id="order-venue" class="w-220">
+                    <option value="">-- 请选择场馆 --</option>
+                    <?php foreach ($venue_list as $key => $value) { ?>
+                    <option value="<?=$value['chiness_name']?>"><?=$value['chiness_name']?></option>
+                    <?php } ?>
+                </select>
+                <p class="w-220 mb-1 mt-4">请选择日期: </p>
+                <div id="datepicker"></div>
+                <p class="w-220 mb-1 mt-4">请输入您的姓名: </p>
+                <input type="text" placeholder="姓名" class="w-220" id="order-name">
+                <p class="w-220 mb-1 mt-4">请输入您的手机号码: </p>
+                <input type="number" placeholder="手机号码" class="w-220" id="order-phone">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-submit-order" style="background:#907656;border-color:#907656">提交</button>
+            </div>
+            </div>
         </div>
     </div>
+    <!-- order modal end -->
+    <!-- reservation modal start -->
+    <div class="modal fade in show" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body pt-0 d-flex flex-column align-items-center justify-content-center">
+                    <div class="d-flex flex-column p-2">
+                    <div>
+                        <img src="<?=base_url('assets/images/modal/title.png')?>" alt="">
+                    </div>
+                    <input type="text" class="form-control mt-4" id="reservation-name" placeholder="请输入您的姓名" style="border-radius:10px;background-color:rgba(255,255,255,0.5);border-color: rgba(255,255,255,0.5);">
+                    <input type="tel" class="form-control mt-3" id="reservation-phone" placeholder="请输入您的手机" style="border-radius:10px;background-color:rgba(255,255,255,0.5);border-color: rgba(255,255,255,0.5);">
+                    <div class="text-center mt-3">
+                        <img src="<?=base_url('assets/images/modal/submit.png')?>" alt="" style="width:80%" class="btn-submit-reservation">
+                    </div>
+                    <img src="<?=base_url('assets/images/modal/cancel.png')?>" alt="" class="close" data-dismiss="modal" aria-label="Close">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- reservation modal end -->
 </body>
 <script src="<?php echo base_url('assets/console/plugins/momentjs/moment.js')?>"></script>
   <script src="<?=base_url('assets/plugin/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
@@ -244,49 +288,71 @@ $(function(){
     });
 
     $('.order-btn').on('click',function(){
-            $('#exampleModalLong').modal();
-            
-        });
-        var datepicker = $('#datepicker').datepicker(
-            {
-                format:"YYYY-MM-DD",
-                // defaultDate:new Date(),
-                startDate: "today",
-                language: 'zh-CN',
-                todayHighlight:true,
-                templates:{
-                    leftArrow: '<img src="<?=base_url('assets/images/homePage/arrow_left.png')?>"/>',
-                    rightArrow: '<img src="<?=base_url('assets/images/homePage/arrow_right.png')?>"/>'
-                }
+        $('#exampleModalLong').modal();
+    });
+    
+    $('.reservation-btn').on('click',function(){
+        $('#reservationModal').modal();
+    });
+    var datepicker = $('#datepicker').datepicker(
+        {
+            format:"YYYY-MM-DD",
+            // defaultDate:new Date(),
+            startDate: "today",
+            language: 'zh-CN',
+            todayHighlight:true,
+            templates:{
+                leftArrow: '<img src="<?=base_url('assets/images/homePage/arrow_left.png')?>"/>',
+                rightArrow: '<img src="<?=base_url('assets/images/homePage/arrow_right.png')?>"/>'
             }
-        );
+        }
+    );
 
-        $('.btn-submit-order').on('click',function(){
-            var date = $('#datepicker').datepicker('getDate')!=null?$('#datepicker').datepicker('getDate'):'';
-            var venue = $('#order-venue').val();
-            var phone = $('#order-phone').val();
-            var name = $('#order-name').val();
-            
-            if(venue==''){
-                alert('请选择场馆');
-            }else if(date==''){
-                alert('请选择日期');
-            }else if(name==''){
-                alert('请选择姓名');
-            }else if(phone==''){
-                alert('请选择手机号码');
-            }else{
-                $.post('<?=base_url('pageApi/insert_form')?>',{
-                    date:date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay(),
-                    phone:phone,
-                    name:name,
-                    venue:venue
-                },function(data){
-                    alert('感謝您的來信，我們會在24小時內回覆您。');
-                    location.reload();
-                },'json');
-            }
-        });
+    $('.btn-submit-order').on('click',function(){
+        var date = $('#datepicker').datepicker('getDate')!=null?$('#datepicker').datepicker('getDate'):'';
+        var venue = $('#order-venue').val();
+        var phone = $('#order-phone').val();
+        var name = $('#order-name').val();
+        
+        if(venue==''){
+            alert('请选择场馆');
+        }else if(date==''){
+            alert('请选择日期');
+        }else if(name==''){
+            alert('请选择姓名');
+        }else if(phone==''){
+            alert('请选择手机号码');
+        }else{
+            $.post('<?=base_url('pageApi/insert_form')?>',{
+                date:date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay(),
+                phone:phone,
+                name:name,
+                venue:venue
+            },function(data){
+                alert('感謝您的來信，我們會在24小時內回覆您。');
+                location.reload();
+            },'json');
+        }
+    });
+
+    $('.btn-submit-reservation').on('click',function(){
+        var phone = $('#reservation-phone').val();
+        var name = $('#reservation-name').val();
+        
+        if(name==''){
+            alert('请輸入姓名');
+        }else if(phone==''){
+            alert('请輸入手机号码');
+        }else{
+            $.post('<?=base_url('pageApi/insert_form')?>',{
+                phone:phone,
+                name:name
+            },function(data){
+                alert('感謝您的來信，我們會在24小時內回覆您。');
+                location.reload();
+            },'json');
+        }
+    });
 })
 </script>
 

@@ -84,7 +84,7 @@
         }
     }
     .titleName{
-        font-size:24px;
+        font-size: 1.25rem;
         font-weight:bold;
         color:#4d4000;
         position: absolute;   

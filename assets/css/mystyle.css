@@ -1,0 +1,25 @@
+.hidden-mobile-f {
+    display: flex !important;
+}
+
+.hidden-mobile {
+    display: black !important;
+}
+
+.show-mobile,
+.show-mobile-f {
+    display: none !important;
+}
+
+@media(max-width:767px) {
+    .hidden-mobile,
+    .hidden-mobile-f {
+        display: none !important;
+    }
+    .show-mobile {
+        display: block !important;
+    }
+    .show-mobile-f {
+        display: flex !important;
+    }
+}

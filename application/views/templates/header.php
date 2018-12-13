@@ -18,7 +18,7 @@
 
     <!-- tachyons CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/tachyons/tachyons.min.css')?>"/>
-
+    
     <link href="<?echo base_url('assets/open-iconic-master/font/css/open-iconic-bootstrap.css')?>" rel="stylesheet">
 
 
@@ -30,6 +30,7 @@
     <!-- Swiper JS -->
 
     <link href="<?php echo base_url('assets/css/swiper/swiper.min.css')?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/mystyle.css')?>"/>
     
     <title>UWEAR</title>
   
@@ -151,6 +152,7 @@
   }
   .absolute-nav{
     position:absolute;
+    z-index:20;
   }
   .normal-nav{
     position:unset;
@@ -175,8 +177,59 @@
   }
   .normal-nav .headerColor{
     color:#000 !important;
-
   }
+  .bottomBar{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    display:flex;
+    z-index:20;
+    background:#DEDEDE;
+  }
+  .sideBar-mobile{
+    position:fixed;
+    display:flex;
+    z-index:20;
+    right: 5px;
+    bottom: 20%;
+  }
+  .sideBar-mobile .sideBar-mobile-item{
+    flex:1;
+    text-align: center;
+  }
+  .sideBar-mobile .sideBar-mobile-item img{
+    width:50px;
+  }
+  .bottomBar .bottomBar-item{
+    flex:1;
+    text-align: center;
+    padding: 10px 0px;
+  }
+  .bottomBar .bottomBar-item img{
+    width:40px;
+  }
+  .sideBar{
+    position:fixed;
+    display:flex;
+    z-index:20;
+    right: 5px;
+    bottom: 20%;
+    flex-direction:column;
+  }
+  .sideBar .sideBar-item{
+    margin-bottom:5px;
+  }
+  .sideBar .sideBar-item.float-item{
+    position: absolute;
+    top: -50px;
+    width: 150px;
+    right: -119px;
+    transition:right .3s ease-in;
+  }
+  .sideBar .sideBar-item.float-item:hover{
+    right:0px;
+  }
+  
   @media(max-width:991px){
     .navbar-brand{
       margin-right:0;
@@ -195,6 +248,9 @@
     }
     .navbar{
       padding:0px;
+    }
+    .absolute-nav{
+      position:fixed;
     }
     .normal-nav,.absolute-nav{
       background:#312B0C;
@@ -309,42 +365,43 @@
   </div>
  
 </section>
+<div class="sideBar-mobile show-mobile-f">
+  <a href="" class="sideBar-mobile-item"><img src="<?=base_url('assets/images/bottomBar/side.png')?>" alt=""></a>
+</div>
+<div class="bottomBar show-mobile-f">
+  <a href="" class="bottomBar-item"><img src="<?=base_url('assets/images/bottomBar/1.png')?>" alt=""></a>
+  <a href="tel:1234567" class="bottomBar-item"><img src="<?=base_url('assets/images/bottomBar/2.png')?>" alt=""></a>
+  <a href="<?=base_url('pages/wedding_feast')?>" class="bottomBar-item"><img src="<?=base_url('assets/images/bottomBar/3.png')?>" alt=""></a>
+</div>
+<div class="sideBar hidden-mobile-f">
+  <a href="tel:1234566" class="sideBar-item float-item"><img src="<?=base_url('assets/images/sideBar/phone.png')?>" alt=""></a>
+  <a href="" class="sideBar-item"><img src="<?=base_url('assets/images/sideBar/1.png')?>" alt=""></a>
+  <a class="sideBar-item reservation-btn"><img src="<?=base_url('assets/images/sideBar/2.png')?>" alt=""></a>
+  <a class="sideBar-item order-btn"><img src="<?=base_url('assets/images/sideBar/3.png')?>" alt=""></a>
+  <a class="sideBar-item go-top"><img src="<?=base_url('assets/images/sideBar/4.png')?>" alt=""></a>
+</div>
 
     <!-- jQuery (Bootstrap 所有外掛均需要使用) -->
     <script src="<?php echo base_url('assets/js/jquery-2.1.4.min.js')?>"></script>
     <script href="<?php echo base_url('assets/js/bootstrap/bootstrap.min.js')?>" rel="stylesheet"> </script>
-        
-        <script src="<?php echo base_url('assets/js/bootstrap/bootstrap.bundle.min.js')?>"></script>
-
-     <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
-   <script type="text/javascript">
-
-
-
-      $('.changeLang').on('click',function(){
-
-        var temp=document.getElementById("changeInputId").value;
-        
-        if(temp == 'english'){
-          location.href='<?php echo base_url('pages/home');?>'+'?lang=cn';
-        }else if(temp == 'cn'){
-          location.href='<?php echo base_url('pages/home');?>'+'?lang=english';
-        }
-
-      }) 
-    
-    </script>
+    <script src="<?php echo base_url('assets/js/bootstrap/bootstrap.bundle.min.js')?>"></script>
 
     <!-- NAVBAR -->
     <script>
       $(function(){
-          var w = $(window).width();
-          var h = $(window).height();
+        var w = $(window).width();
+        var h = $(window).height();
         if(w<992){
           $('.navbar-brand').find('img').attr('src','<?php echo base_url('assets/images/footer/footerLogo.png');?>');
         }
         $('#nav-title-img').find('img').css('display','block');
-                  
+
+        $('.go-top').on('click',function(){
+          var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+              $body.animate({
+                scrollTop: 0
+              }, 600);
+        });
       })
     </script>
 
