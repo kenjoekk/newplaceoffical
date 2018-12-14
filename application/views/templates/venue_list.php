@@ -24,11 +24,16 @@
     .wb-all{
         word-break:break-all;
     }
-    .page-item,[data-active="prev"]{
-        display:none;
+    .page-item{
+        display:none
     }
+    
     [data-page="0"]{
         display:block;
+    }
+    .page-btn.disabled{
+        pointer-events: none;
+        opacity:.5;
     }
     .buttonIconStyleEvents{
         background-color:#967d00;
@@ -37,7 +42,15 @@
         color:white!important;
         font-size:16px;
     
-    }   
+    }  
+    .page-num.active{
+        background:#504417;
+        color:white !important;
+    } 
+    .page-btn:hover{
+        background:#8c7e4a;
+        color:white !important;
+    }
     .v_list_img_style{
         padding:1.5rem;
     }
@@ -68,8 +81,10 @@
 <body>
     <div class="container">
         <?php
+            // 一页几个
+            $pageItems = 5;
             foreach ($venue_list as $key => $value) { 
-                $page = floor($key/5);
+                $page = floor($key/$pageItems);
                 ?>
                 <div class="shadow-3 mt-5 page-item <?php if($page==0){echo 'active';}?>" data-page="<?=$page?>">
                     <div class="row ">
@@ -115,10 +130,18 @@
                 </div>
             </div>
         </div> -->
+        
 
         <div class="d-flex justify-content-center p-5">
-               <a class="btn page-btn mr-3" data-active="prev">上一頁</a>
-               <a class="btn page-btn" data-active="next">下一頁</a>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="pages-item"><a class="page-link page-btn disabled" data-active="prev">上一頁</a></li>
+                    <!-- <li class="pages-item"><a class="page-link" >1</a></li> -->
+                    <li class="pages-item"><a class="page-link page-btn" data-active="next">下一頁</a></li>
+                </ul>
+            </nav>
+               <!-- <a class="btn page-btn mr-3" data-active="prev">上一頁</a>
+               <a class="btn page-btn" data-active="next">下一頁</a> -->
         </div>
     </div>
     
@@ -126,6 +149,21 @@
   
 <script>
 $(function(){
+    //产生 pagination 中间的数字
+    var countItem = $('.page-item').length;
+    //一页几个
+    var onePageCount = "<?=$pageItems?>";
+    var pagination_num = Math.ceil(countItem/onePageCount);
+    var pagination_html = '';
+    for (var index = 0; index < pagination_num; index++) {
+        var active = '';
+        if(index==0){
+            active = 'active';
+        }
+        pagination_html += '<li class="pages-item"><a class="page-link page-btn page-num '+active+'" data-active="'+(index+1)+'">'+(index+1)+'</a></li>';
+    }
+    $('[data-active="prev"]').closest('li').after(pagination_html);
+
     
     $('.page-btn').on('click',function(){
         console.log('click');
@@ -136,15 +174,17 @@ $(function(){
         console.log('now_page:'+now_page);
         switch (active) {
             case 'prev':
-            console.log('prev');
+                console.log('prev');
+                //扣pagination
+                $('.page-num').removeClass('active');
+                $('[data-active="'+(now_page)+'"]').addClass('active');
+                console.log($('[data-active="'+(now_page-1)+'"]'));
                 //判断是否要进到第一页了
                 if(now_page==1){
                     console.log('即将进到第一页');
-                    $('[data-active="prev"]').css('display','none');
-                }else{
-                    
+                    $('[data-active="prev"]').addClass('disabled');
                 }
-                $('[data-active="next"]').css('display','block');
+                $('[data-active="next"]').removeClass('disabled');
                 $('[data-page="'+now_page+'"]').fadeOut(function(){
                     $('[data-page="'+(now_page-1)+'"]').fadeIn();
                     $('.page-item').removeClass('active');
@@ -152,20 +192,43 @@ $(function(){
                 });
                 break;
             case 'next':
-            console.log('next');
+                console.log('next');
+                //加pagination
+                $('.page-num').removeClass('active');
+                $('[data-active="'+(now_page+2)+'"]').addClass('active');
                 //判断是否要进到最后一页
                 if(now_page == (page-1)){
                     console.log('即将进到最后一页');
-                    $('[data-active="next"]').css('display','none');
-                }else{
-
+                    $('[data-active="next"]').addClass('disabled');
                 }
-                $('[data-active="prev"]').css('display','block');
+                $('[data-active="prev"]').removeClass('disabled');
                 $('[data-page="'+now_page+'"]').fadeOut(function(){
                     $('[data-page="'+(now_page+1)+'"]').fadeIn();
                     $('.page-item').removeClass('active');
                     $('[data-page="'+(now_page+1)+'"]').addClass('active');
                 });
+                break;
+            default:
+                $('.page-num').removeClass('active');
+                $('[data-active="'+active+'"]').addClass('active');
+                //判断是否要进到第一页了
+                if(now_page==1){
+                    console.log('即将进到第一页');
+                    $('[data-active="prev"]').addClass('disabled');
+                    $('[data-active="next"]').removeClass('disabled');
+                }
+                //判断是否要进到最后一页
+                if(now_page == (page-1)){
+                    console.log('即将进到最后一页');
+                    $('[data-active="next"]').addClass('disabled');
+                    $('[data-active="prev"]').removeClass('disabled');
+                }
+                $('[data-page="'+now_page+'"]').fadeOut(function(){
+                    $('[data-page="'+(active-1)+'"]').fadeIn();
+                    $('.page-item').removeClass('active');
+                    $('[data-page="'+(active-1)+'"]').addClass('active');
+                });
+                
                 break;
         }
         var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
