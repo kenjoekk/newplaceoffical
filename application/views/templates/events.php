@@ -65,10 +65,10 @@
         background:#5A4D18;
     }
     .event-detail{
-        display: -webkit-box;
+        /* display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 6;
-        overflow: hidden;
+        overflow: hidden; */
 
     }
     @media(max-width:992px){

@@ -219,6 +219,7 @@
   }
   .sideBar .sideBar-item{
     margin-bottom:5px;
+    width:70px;
   }
   .sideBar .sideBar-item.float-item{
     position: absolute;

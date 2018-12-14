@@ -145,6 +145,9 @@
       color:#5A4D18 !important;
       padding:3px 30px;
     }
+    .btn-order:hover{
+      opacity:.6;
+    }
     .card{
       box-shadow:0px 3px 3px 0px rgba(0,0,0,0.2);
     }
@@ -276,6 +279,7 @@
         border-radius:50px;
         background:#5B4F01;
         color:white !important;
+        padding:3px 25px;
       }
       .h_img_info{
         padding-top:3rem;
